@@ -1,1 +1,103 @@
-PLACEHOLDER
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HTTP Request step — FlowNet Docs</title>
+<meta name="description" content="Reference for the FlowNet HTTP Request step template.">
+<link rel="stylesheet" href="/docs/assets/style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="topnav">
+    <a class="logo" href="/">Flow<span>Net</span></a>
+    <div class="nav-links">
+      <a href="/docs/" class="active">Docs</a>
+      <a href="https://www.youtube.com/@flownetio" target="_blank" rel="noopener">YouTube</a>
+    </div>
+  </nav>
+  <div class="layout">
+    <aside>
+    <div class="side-label">Overview</div>
+    <ul>
+      <li><a href="/docs/" class="">All templates</a></li>
+    </ul>
+    <div class="side-label">Triggers</div>
+    <ul>
+      <li><a href="/docs/triggers/manual.html" class="">Manual Trigger</a></li>
+      <li><a href="/docs/triggers/webhook.html" class="">Webhook</a></li>
+      <li><a href="/docs/triggers/cron.html" class="">Scheduled</a></li>
+      <li><a href="/docs/triggers/shopify.html" class="">Shopify</a></li>
+    </ul>
+    <div class="side-label">Steps</div>
+    <ul>
+      <li><a href="/docs/steps/debug.html" class="">Debug</a></li>
+      <li><a href="/docs/steps/http-request.html" class="active">HTTP Request</a></li>
+      <li><a href="/docs/steps/lua-script.html" class="">Lua script</a></li>
+      <li><a href="/docs/steps/condition.html" class="">Condition</a></li>
+      <li><a href="/docs/steps/loop.html" class="">Loop</a></li>
+      <li><a href="/docs/steps/shopify-graphql.html" class="">Shopify GraphQL</a></li>
+      <li><a href="/docs/steps/gemini.html" class="">Gemini</a></li>
+    </ul>
+  </aside>
+    <main>
+      
+      <div class="breadcrumb"><a href="/docs/">Docs</a> / Step</div>
+      <div class="kicker">Step</div>
+      <h1>HTTP Request</h1>
+      <div class="type-badge">step_type: <b style="color:var(--text-primary)">http_call</b></div>
+
+      <p class="lede">Calls any HTTP endpoint with a configurable method, query string, headers, and body. The response is made available to downstream steps.</p>
+
+      <h2>Configuration</h2>
+<table class="fields">
+      <tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+      <tr>
+        <td><code class="field-name">method</code></td>
+        <td><span class="field-type">enum</span></td>
+        <td><span class="req yes">required</span></td>
+        <td class="field-desc">HTTP method: <code style="font-family:var(--mono)">GET</code>, <code style="font-family:var(--mono)">POST</code>, <code style="font-family:var(--mono)">PUT</code>, <code style="font-family:var(--mono)">PATCH</code>, <code style="font-family:var(--mono)">DELETE</code>, or <code style="font-family:var(--mono)">HEAD</code>. Defaults to <code style="font-family:var(--mono)">GET</code>.</td>
+      </tr>
+      <tr>
+        <td><code class="field-name">url</code></td>
+        <td><span class="field-type">string (uri)</span></td>
+        <td><span class="req yes">required</span></td>
+        <td class="field-desc">The request URL.</td>
+      </tr>
+      <tr>
+        <td><code class="field-name">query</code></td>
+        <td><span class="field-type">array&lt;object&gt;</span></td>
+        <td><span class="req no">optional</span></td>
+        <td class="field-desc">Query string parameters, as key/value pairs.</td>
+      </tr>
+      <tr>
+        <td><code class="field-name">headers</code></td>
+        <td><span class="field-type">array&lt;object&gt;</span></td>
+        <td><span class="req no">optional</span></td>
+        <td class="field-desc">Request headers, as key/value pairs.</td>
+      </tr>
+      <tr>
+        <td><code class="field-name">body</code></td>
+        <td><span class="field-type">object</span></td>
+        <td><span class="req no">optional</span></td>
+        <td class="field-desc">Request body. <code style="font-family:var(--mono)">content_type</code> is <code style="font-family:var(--mono)">application/json</code> or <code style="font-family:var(--mono)">text/plain</code>; <code style="font-family:var(--mono)">fields</code> is a list of key/value pairs assembled into the body, with values resolved as expressions.</td>
+      </tr>
+    </table>
+
+      <h2>When to use it</h2>
+      <ul class="plain">
+        <li>Calling a third-party API that doesn't have a dedicated FlowNet step.</li>
+        <li>Posting workflow data to an internal service, spreadsheet backend, or notification tool.</li>
+        <li>Fetching extra data mid-workflow before a later step acts on it.</li>
+      </ul>
+
+      <div class="note"><b>Note:</b> body <code style="font-family:var(--mono)">fields</code> values support expressions, so you can reference trigger and step data directly, e.g. <code style="font-family:var(--mono)">steps.debug_a.variables.0.value</code>.</div>
+
+    </main>
+  </div>
+  <footer class="site-footer">
+    &copy; 2026 FlowNet. <a href="https://www.youtube.com/@flownetio" target="_blank" rel="noopener">Follow the build &rarr;</a>
+  </footer>
+</div>
+</body>
+</html>
