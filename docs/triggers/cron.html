@@ -1,1 +1,118 @@
-PLACEHOLDER
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scheduled trigger — FlowNet Docs</title>
+<meta name="description" content="Run a FlowNet workflow on a cron schedule, with ready-made presets.">
+<link rel="stylesheet" href="/docs/assets/style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="topnav">
+    <a class="logo" href="/">Flow<span>Net</span></a>
+    <div class="nav-links">
+      <a href="/docs/" class="active">Docs</a>
+      <a href="https://www.youtube.com/@flownetio" target="_blank" rel="noopener">YouTube</a>
+    </div>
+  </nav>
+  <div class="layout">
+    <aside>
+    <div class="side-label">Overview</div>
+    <ul>
+      <li><a href="/docs/" class="">All templates</a></li>
+    </ul>
+    <div class="side-label">Triggers</div>
+    <ul>
+      <li><a href="/docs/triggers/manual.html" class="">Manual Trigger</a></li>
+      <li><a href="/docs/triggers/webhook.html" class="">Webhook</a></li>
+      <li><a href="/docs/triggers/cron.html" class="active">Scheduled</a></li>
+      <li><a href="/docs/triggers/shopify.html" class="">Shopify</a></li>
+    </ul>
+    <div class="side-label">Steps</div>
+    <ul>
+      <li><a href="/docs/steps/debug.html" class="">Debug</a></li>
+      <li><a href="/docs/steps/http-request.html" class="">HTTP Request</a></li>
+      <li><a href="/docs/steps/lua-script.html" class="">Lua script</a></li>
+      <li><a href="/docs/steps/condition.html" class="">Condition</a></li>
+      <li><a href="/docs/steps/loop.html" class="">Loop</a></li>
+      <li><a href="/docs/steps/shopify-graphql.html" class="">Shopify GraphQL</a></li>
+      <li><a href="/docs/steps/gemini.html" class="">Gemini</a></li>
+    </ul>
+  </aside>
+    <main>
+      
+      <div class="breadcrumb"><a href="/docs/">Docs</a> / Trigger</div>
+      <div class="kicker">Trigger</div>
+      <h1>Scheduled</h1>
+      <div class="type-badge">trigger_type: <b style="color:var(--text-primary)">cron</b></div>
+
+      <p class="lede">Runs a workflow on a recurring schedule, defined as a cron expression. No external event needed &mdash; FlowNet fires the trigger itself at the configured times.</p>
+
+      <h2>Configuration</h2>
+<table class="fields">
+      <tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+      <tr>
+        <td><code class="field-name">schedule</code></td>
+        <td><span class="field-type">string</span></td>
+        <td><span class="req yes">required</span></td>
+        <td class="field-desc">Standard 5-field cron expression (minute hour day month weekday). E.g. <code style="font-family:var(--mono)">0 9 * * 1</code> = every Monday at 9:00.</td>
+      </tr>
+      <tr>
+        <td><code class="field-name">timezone</code></td>
+        <td><span class="field-type">string</span></td>
+        <td><span class="req no">optional</span></td>
+        <td class="field-desc">IANA timezone the schedule is evaluated in, e.g. <code style="font-family:var(--mono)">Europe/Berlin</code>. Defaults to UTC.</td>
+      </tr>
+    </table>
+
+      <h2>Presets</h2>
+      <p class="body-text">Common schedules you can pick from directly, instead of writing a cron expression by hand:</p>
+      <div class="preset-grid">
+      <div class="preset-card">
+        <div class="preset-name">Every hour</div>
+        <div class="preset-desc">Runs at the start of every hour</div>
+        <code>0 * * * *</code>
+      </div>
+      <div class="preset-card">
+        <div class="preset-name">Every day at 9:00</div>
+        <div class="preset-desc">Runs daily at 9 AM UTC (great for morning reports)</div>
+        <code>0 9 * * *</code>
+      </div>
+      <div class="preset-card">
+        <div class="preset-name">Every Monday at 9:00</div>
+        <div class="preset-desc">Weekly digest or report on Monday morning</div>
+        <code>0 9 * * 1</code>
+      </div>
+      <div class="preset-card">
+        <div class="preset-name">Every 15 minutes</div>
+        <div class="preset-desc">Frequent polling — inventory checks, sync jobs</div>
+        <code>*/15 * * * *</code>
+      </div>
+      <div class="preset-card">
+        <div class="preset-name">Every day at midnight</div>
+        <div class="preset-desc">Nightly cleanup or data archiving</div>
+        <code>0 0 * * *</code>
+      </div>
+      <div class="preset-card">
+        <div class="preset-name">1st of every month</div>
+        <div class="preset-desc">Monthly report or billing cycle job</div>
+        <code>0 9 1 * *</code>
+      </div>
+      </div>
+
+      <h2>When to use it</h2>
+      <ul class="plain">
+        <li>Daily or weekly reports and digests.</li>
+        <li>Periodic sync or cleanup jobs that don't depend on an external event.</li>
+        <li>Polling an API on a fixed interval when no webhook is available.</li>
+      </ul>
+
+    </main>
+  </div>
+  <footer class="site-footer">
+    &copy; 2026 FlowNet. <a href="https://www.youtube.com/@flownetio" target="_blank" rel="noopener">Follow the build &rarr;</a>
+  </footer>
+</div>
+</body>
+</html>
