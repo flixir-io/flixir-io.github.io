@@ -1,1 +1,71 @@
-PLACEHOLDER
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manual Trigger — FlowNet Docs</title>
+<meta name="description" content="Manually run a FlowNet workflow on demand.">
+<link rel="stylesheet" href="/docs/assets/style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="topnav">
+    <a class="logo" href="/">Flow<span>Net</span></a>
+    <div class="nav-links">
+      <a href="/docs/" class="active">Docs</a>
+      <a href="https://www.youtube.com/@flownetio" target="_blank" rel="noopener">YouTube</a>
+    </div>
+  </nav>
+  <div class="layout">
+    <aside>
+    <div class="side-label">Overview</div>
+    <ul>
+      <li><a href="/docs/" class="">All templates</a></li>
+    </ul>
+    <div class="side-label">Triggers</div>
+    <ul>
+      <li><a href="/docs/triggers/manual.html" class="active">Manual Trigger</a></li>
+      <li><a href="/docs/triggers/webhook.html" class="">Webhook</a></li>
+      <li><a href="/docs/triggers/cron.html" class="">Scheduled</a></li>
+      <li><a href="/docs/triggers/shopify.html" class="">Shopify</a></li>
+    </ul>
+    <div class="side-label">Steps</div>
+    <ul>
+      <li><a href="/docs/steps/debug.html" class="">Debug</a></li>
+      <li><a href="/docs/steps/http-request.html" class="">HTTP Request</a></li>
+      <li><a href="/docs/steps/lua-script.html" class="">Lua script</a></li>
+      <li><a href="/docs/steps/condition.html" class="">Condition</a></li>
+      <li><a href="/docs/steps/loop.html" class="">Loop</a></li>
+      <li><a href="/docs/steps/shopify-graphql.html" class="">Shopify GraphQL</a></li>
+      <li><a href="/docs/steps/gemini.html" class="">Gemini</a></li>
+    </ul>
+  </aside>
+    <main>
+      
+      <div class="breadcrumb"><a href="/docs/">Docs</a> / Trigger</div>
+      <div class="kicker">Trigger</div>
+      <h1>Manual Trigger</h1>
+      <div class="type-badge">trigger_type: <b style="color:var(--text-primary)">manual</b></div>
+
+      <p class="lede">Starts a workflow run immediately when you click <b>Run</b> in the FlowNet editor. There's no external event to configure &mdash; it's the fastest way to test a workflow while you're building it.</p>
+
+      <h2>Configuration</h2>
+      <p class="body-text">This trigger has no configurable fields. Attach it to a workflow and press run.</p>
+
+      <h2>When to use it</h2>
+      <ul class="plain">
+        <li>Testing a workflow while designing it, before wiring up a real trigger.</li>
+        <li>One-off or ad-hoc runs that a teammate kicks off by hand.</li>
+        <li>Workflows meant to be triggered from another workflow rather than an external event.</li>
+      </ul>
+
+      <div class="note"><b>Note:</b> because there's no external payload, downstream steps that expect trigger data (e.g. <code style="font-family:var(--mono)">trigger.title</code>) should provide sensible fallbacks when run manually.</div>
+
+    </main>
+  </div>
+  <footer class="site-footer">
+    &copy; 2026 FlowNet. <a href="https://www.youtube.com/@flownetio" target="_blank" rel="noopener">Follow the build &rarr;</a>
+  </footer>
+</div>
+</body>
+</html>
