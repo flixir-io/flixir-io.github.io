@@ -1,1 +1,99 @@
-PLACEHOLDER
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shopify trigger — FlowNet Docs</title>
+<meta name="description" content="Trigger a FlowNet workflow from Shopify store events.">
+<link rel="stylesheet" href="/docs/assets/style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="topnav">
+    <a class="logo" href="/">Flow<span>Net</span></a>
+    <div class="nav-links">
+      <a href="/docs/" class="active">Docs</a>
+      <a href="https://www.youtube.com/@flownetio" target="_blank" rel="noopener">YouTube</a>
+    </div>
+  </nav>
+  <div class="layout">
+    <aside>
+    <div class="side-label">Overview</div>
+    <ul>
+      <li><a href="/docs/" class="">All templates</a></li>
+    </ul>
+    <div class="side-label">Triggers</div>
+    <ul>
+      <li><a href="/docs/triggers/manual.html" class="">Manual Trigger</a></li>
+      <li><a href="/docs/triggers/webhook.html" class="">Webhook</a></li>
+      <li><a href="/docs/triggers/cron.html" class="">Scheduled</a></li>
+      <li><a href="/docs/triggers/shopify.html" class="active">Shopify</a></li>
+    </ul>
+    <div class="side-label">Steps</div>
+    <ul>
+      <li><a href="/docs/steps/debug.html" class="">Debug</a></li>
+      <li><a href="/docs/steps/http-request.html" class="">HTTP Request</a></li>
+      <li><a href="/docs/steps/lua-script.html" class="">Lua script</a></li>
+      <li><a href="/docs/steps/condition.html" class="">Condition</a></li>
+      <li><a href="/docs/steps/loop.html" class="">Loop</a></li>
+      <li><a href="/docs/steps/shopify-graphql.html" class="">Shopify GraphQL</a></li>
+      <li><a href="/docs/steps/gemini.html" class="">Gemini</a></li>
+    </ul>
+  </aside>
+    <main>
+      
+      <div class="breadcrumb"><a href="/docs/">Docs</a> / Trigger</div>
+      <div class="kicker">Trigger</div>
+      <h1>Shopify</h1>
+      <div class="type-badge">trigger_type: <b style="color:var(--text-primary)">shopify</b></div>
+
+      <p class="lede">Starts a workflow whenever something happens in the connected Shopify store. Pick a specific event via a preset, and the trigger's payload schema is filled in automatically.</p>
+
+      <h2>Configuration</h2>
+<table class="fields">
+      <tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+      <tr>
+        <td><code class="field-name">filter</code></td>
+        <td><span class="field-type">string</span></td>
+        <td><span class="req no">optional</span></td>
+        <td class="field-desc">Optional expression to filter which events actually start a run, evaluated against the incoming event payload.</td>
+      </tr>
+    </table>
+
+      <h2>Event presets</h2>
+      <p class="body-text">Each preset maps to a Shopify webhook topic and comes with its own example payload and schema, used to validate expressions that read from <code style="font-family:var(--mono)">trigger.payload</code>:</p>
+      <div class="preset-grid">
+      <div class="preset-card">
+        <div class="preset-name">New Product</div>
+        <div class="preset-desc">Fires when a new product is created in the connected store.</div>
+        <code>products/create</code>
+      </div>
+      <div class="preset-card">
+        <div class="preset-name">Product Updated</div>
+        <div class="preset-desc">Fires when an existing product is updated &mdash; title, price, variants, and more.</div>
+        <code>products/update</code>
+      </div>
+      <div class="preset-card">
+        <div class="preset-name">Inventory Updated</div>
+        <div class="preset-desc">Fires when stock levels change for a product variant at a location.</div>
+        <code>inventory_levels/update</code>
+      </div>
+      </div>
+
+      <h2>When to use it</h2>
+      <ul class="plain">
+        <li>Reacting to catalog changes &mdash; new products, edits, price changes.</li>
+        <li>Keeping inventory in sync with an external system.</li>
+        <li>Any automation that should start from something happening in the merchant's store, rather than on a schedule or external webhook.</li>
+      </ul>
+
+      <div class="note"><b>Note:</b> <code style="font-family:var(--mono)">has_filter</code> is enabled for this trigger, so you can narrow down which events reach the workflow before any steps run.</div>
+
+    </main>
+  </div>
+  <footer class="site-footer">
+    &copy; 2026 FlowNet. <a href="https://www.youtube.com/@flownetio" target="_blank" rel="noopener">Follow the build &rarr;</a>
+  </footer>
+</div>
+</body>
+</html>
