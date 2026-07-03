@@ -1,1 +1,77 @@
-PLACEHOLDER
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loop step — FlowNet Docs</title>
+<meta name="description" content="Reference for the FlowNet Loop step template.">
+<link rel="stylesheet" href="/docs/assets/style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="topnav">
+    <a class="logo" href="/">Flow<span>Net</span></a>
+    <div class="nav-links">
+      <a href="/docs/" class="active">Docs</a>
+      <a href="https://www.youtube.com/@flownetio" target="_blank" rel="noopener">YouTube</a>
+    </div>
+  </nav>
+  <div class="layout">
+    <aside>
+    <div class="side-label">Overview</div>
+    <ul>
+      <li><a href="/docs/" class="">All templates</a></li>
+    </ul>
+    <div class="side-label">Triggers</div>
+    <ul>
+      <li><a href="/docs/triggers/manual.html" class="">Manual Trigger</a></li>
+      <li><a href="/docs/triggers/webhook.html" class="">Webhook</a></li>
+      <li><a href="/docs/triggers/cron.html" class="">Scheduled</a></li>
+      <li><a href="/docs/triggers/shopify.html" class="">Shopify</a></li>
+    </ul>
+    <div class="side-label">Steps</div>
+    <ul>
+      <li><a href="/docs/steps/debug.html" class="">Debug</a></li>
+      <li><a href="/docs/steps/http-request.html" class="">HTTP Request</a></li>
+      <li><a href="/docs/steps/lua-script.html" class="">Lua script</a></li>
+      <li><a href="/docs/steps/condition.html" class="">Condition</a></li>
+      <li><a href="/docs/steps/loop.html" class="active">Loop</a></li>
+      <li><a href="/docs/steps/shopify-graphql.html" class="">Shopify GraphQL</a></li>
+      <li><a href="/docs/steps/gemini.html" class="">Gemini</a></li>
+    </ul>
+  </aside>
+    <main>
+      
+      <div class="breadcrumb"><a href="/docs/">Docs</a> / Step</div>
+      <div class="kicker">Step</div>
+      <h1>Loop</h1>
+      <div class="type-badge">step_type: <b style="color:var(--text-primary)">loop</b></div>
+
+      <p class="lede">Iterates over a list &mdash; products, order line items, or any array from trigger or step data &mdash; running its downstream branch once per item.</p>
+
+      <h2>Configuration</h2>
+<table class="fields">
+      <tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+      <tr>
+        <td><code class="field-name">list</code></td>
+        <td><span class="field-type">string</span></td>
+        <td><span class="req yes">required</span></td>
+        <td class="field-desc">Expression resolving to the list to iterate over. Each downstream branch runs once per item.</td>
+      </tr>
+    </table>
+
+      <h2>When to use it</h2>
+      <ul class="plain">
+        <li>Processing every line item in an order, or every variant of a product.</li>
+        <li>Sending a notification or API call once per item in a list from a previous step.</li>
+        <li>Batch operations that need the same set of steps repeated per record.</li>
+      </ul>
+
+    </main>
+  </div>
+  <footer class="site-footer">
+    &copy; 2026 FlowNet. <a href="https://www.youtube.com/@flownetio" target="_blank" rel="noopener">Follow the build &rarr;</a>
+  </footer>
+</div>
+</body>
+</html>
