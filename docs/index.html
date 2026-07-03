@@ -1,1 +1,472 @@
-PLACEHOLDER
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Base templates — FlowNet Docs</title>
+<meta name="description" content="Reference for every built-in FlowNet trigger and step template.">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --bg-elevated: #12121a;
+    --border: #232330;
+    --text-primary: #f4f4f6;
+    --text-secondary: #9a9ab0;
+    --accent: #6366f1;
+    --accent-hover: #818cf8;
+    --accent-glow: rgba(99, 102, 241, 0.25);
+    --success: #34d399;
+    --warn: #fbbf24;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", sans-serif;
+    line-height: 1.6;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    top: -20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 900px;
+    height: 900px;
+    background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.5;
+  }
+
+  a { color: inherit; }
+
+  .container {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  nav.topnav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 0;
+  }
+
+  .logo {
+    font-weight: 700;
+    font-size: 19px;
+    letter-spacing: -0.02em;
+    text-decoration: none;
+  }
+
+  .logo span { color: var(--accent); }
+
+  .nav-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 14px;
+    margin-left: 28px;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover, .nav-links a.active { color: var(--text-primary); }
+
+  .layout {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 48px;
+    padding: 40px 0 100px;
+    align-items: start;
+  }
+
+  @media (max-width: 860px) {
+    .layout { grid-template-columns: 1fr; }
+  }
+
+  /* Sidebar */
+  aside {
+    position: sticky;
+    top: 24px;
+  }
+
+  aside .side-label {
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 20px 0 10px;
+  }
+
+  aside .side-label:first-child { margin-top: 0; }
+
+  aside ul { list-style: none; }
+
+  aside li a {
+    display: block;
+    padding: 7px 10px;
+    margin-bottom: 2px;
+    border-radius: 8px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 14px;
+    transition: background 0.15s, color 0.15s;
+  }
+
+  aside li a:hover { background: var(--bg-elevated); color: var(--text-primary); }
+  aside li a.active { background: var(--accent-glow); color: var(--text-primary); font-weight: 600; }
+
+  /* Main content */
+  main { min-width: 0; }
+
+  .breadcrumb {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 18px;
+  }
+  .breadcrumb a { color: var(--text-secondary); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--accent-hover); }
+
+  .kicker {
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 10px;
+  }
+
+  h1 {
+    font-size: clamp(28px, 4vw, 38px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 14px;
+  }
+
+  .type-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-size: 13px;
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-family: var(--mono);
+    margin-bottom: 24px;
+  }
+
+  .lede {
+    font-size: 17px;
+    color: var(--text-secondary);
+    max-width: 680px;
+    margin-bottom: 36px;
+  }
+
+  h2 {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin: 40px 0 14px;
+  }
+
+  h2:first-of-type { margin-top: 0; }
+
+  p.body-text {
+    color: var(--text-secondary);
+    font-size: 15px;
+    max-width: 680px;
+    margin-bottom: 16px;
+  }
+
+  table.fields {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    font-size: 14px;
+  }
+
+  table.fields th {
+    text-align: left;
+    color: var(--text-secondary);
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  table.fields td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    color: var(--text-primary);
+  }
+
+  table.fields tr:last-child td { border-bottom: none; }
+
+  code.field-name {
+    font-family: var(--mono);
+    color: var(--accent-hover);
+    font-size: 13px;
+  }
+
+  .field-type {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-secondary);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 2px 8px;
+    border-radius: 6px;
+    white-space: nowrap;
+  }
+
+  .req {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 2px 8px;
+    border-radius: 6px;
+  }
+  .req.yes { color: var(--warn); background: rgba(251, 191, 36, 0.12); }
+  .req.no { color: var(--text-secondary); background: var(--bg); border: 1px solid var(--border); }
+
+  td.field-desc { color: var(--text-secondary); font-size: 13px; }
+
+  pre.code-block {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px;
+    overflow-x: auto;
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+    line-height: 1.55;
+  }
+
+  ul.plain { margin-left: 20px; color: var(--text-secondary); font-size: 15px; }
+  ul.plain li { margin-bottom: 6px; }
+  ul.plain code { color: var(--accent-hover); font-family: var(--mono); font-size: 13px; }
+
+  .note {
+    border-left: 3px solid var(--accent);
+    background: var(--bg-elevated);
+    padding: 14px 18px;
+    border-radius: 0 10px 10px 0;
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin: 20px 0;
+  }
+  .note b { color: var(--text-primary); }
+
+  .preset-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 14px;
+    margin-bottom: 8px;
+  }
+
+  .preset-card {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+  }
+
+  .preset-card .preset-name {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+
+  .preset-card .preset-desc {
+    color: var(--text-secondary);
+    font-size: 13px;
+    margin-bottom: 8px;
+  }
+
+  .preset-card code {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--success);
+    display: block;
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  @media (max-width: 600px) { .card-grid { grid-template-columns: 1fr; } }
+
+  .tpl-card {
+    display: block;
+    text-decoration: none;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .tpl-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+
+  .tpl-card .tpl-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  .tpl-card h3 { font-size: 16px; font-weight: 600; }
+
+  .tpl-card .tpl-type {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-secondary);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 2px 8px;
+    border-radius: 6px;
+  }
+
+  .tpl-card p { color: var(--text-secondary); font-size: 13px; }
+
+  footer.site-footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 0;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 13px;
+  }
+  footer.site-footer a { color: var(--text-secondary); }
+</style>
+</head>
+<body>
+<div class="container">
+  <nav class="topnav">
+    <a class="logo" href="/">Flow<span>Net</span></a>
+    <div class="nav-links">
+      <a href="/docs/" class="active">Docs</a>
+      <a href="https://www.youtube.com/@flownetio" target="_blank" rel="noopener">YouTube</a>
+    </div>
+  </nav>
+  <div class="layout">
+    <aside>
+    <div class="side-label">Overview</div>
+    <ul>
+      <li><a href="/docs/" class="active">All templates</a></li>
+    </ul>
+    <div class="side-label">Triggers</div>
+    <ul>
+      <li><a href="/docs/triggers/manual.html" class="">Manual Trigger</a></li>
+      <li><a href="/docs/triggers/webhook.html" class="">Webhook</a></li>
+      <li><a href="/docs/triggers/cron.html" class="">Scheduled</a></li>
+      <li><a href="/docs/triggers/shopify.html" class="">Shopify</a></li>
+    </ul>
+    <div class="side-label">Steps</div>
+    <ul>
+      <li><a href="/docs/steps/debug.html" class="">Debug</a></li>
+      <li><a href="/docs/steps/http-request.html" class="">HTTP Request</a></li>
+      <li><a href="/docs/steps/lua-script.html" class="">Lua script</a></li>
+      <li><a href="/docs/steps/condition.html" class="">Condition</a></li>
+      <li><a href="/docs/steps/loop.html" class="">Loop</a></li>
+      <li><a href="/docs/steps/shopify-graphql.html" class="">Shopify GraphQL</a></li>
+      <li><a href="/docs/steps/gemini.html" class="">Gemini</a></li>
+    </ul>
+  </aside>
+    <main>
+      
+      <div class="breadcrumb"><a href="/docs/">Docs</a></div>
+      <div class="kicker">Documentation</div>
+      <h1>Base templates</h1>
+      <p class="lede">
+        Every FlowNet workflow is built from two kinds of blocks: <b>triggers</b>, which start a run,
+        and <b>steps</b>, which do the work. These are the built-in templates that ship with the
+        <code style="font-family:var(--mono); color:var(--accent-hover);">core</code> and
+        <code style="font-family:var(--mono); color:var(--accent-hover);">ai</code> integrations &mdash;
+        available in every workflow, no setup required.
+      </p>
+
+      <h2>Triggers</h2>
+      <p class="body-text">A workflow starts with exactly one trigger. It defines the event that kicks off a run and the data available to the rest of the workflow.</p>
+      <div class="card-grid">
+      <a class="tpl-card" href="/docs/triggers/manual.html">
+        <div class="tpl-top"><h3>Manual Trigger</h3><span class="tpl-type">manual</span></div>
+        <p>Runs a workflow on demand, straight from the FlowNet editor. No external event required.</p>
+      </a>
+      <a class="tpl-card" href="/docs/triggers/webhook.html">
+        <div class="tpl-top"><h3>Webhook</h3><span class="tpl-type">webhook</span></div>
+        <p>Fires a workflow whenever FlowNet receives an HTTP request on the workflow's unique webhook URL.</p>
+      </a>
+      <a class="tpl-card" href="/docs/triggers/cron.html">
+        <div class="tpl-top"><h3>Scheduled</h3><span class="tpl-type">cron</span></div>
+        <p>Runs a workflow on a recurring schedule using a standard cron expression, with ready-made presets.</p>
+      </a>
+      <a class="tpl-card" href="/docs/triggers/shopify.html">
+        <div class="tpl-top"><h3>Shopify</h3><span class="tpl-type">shopify</span></div>
+        <p>Fires a workflow from Shopify store events &mdash; new products, updates, inventory changes, and more.</p>
+      </a>
+      </div>
+
+      <h2>Steps</h2>
+      <p class="body-text">Steps are chained after a trigger to process data, call external services, branch logic, or run custom code.</p>
+      <div class="card-grid">
+      <a class="tpl-card" href="/docs/steps/debug.html">
+        <div class="tpl-top"><h3>Debug</h3><span class="tpl-type">debug</span></div>
+        <p>Outputs the current state or specified variables to the run log, for inspecting a workflow mid-flight.</p>
+      </a>
+      <a class="tpl-card" href="/docs/steps/http-request.html">
+        <div class="tpl-top"><h3>HTTP Request</h3><span class="tpl-type">http_call</span></div>
+        <p>Makes an HTTP request to any URL with a configurable method, query params, headers, and body.</p>
+      </a>
+      <a class="tpl-card" href="/docs/steps/lua-script.html">
+        <div class="tpl-top"><h3>Lua script</h3><span class="tpl-type">lua_script</span></div>
+        <p>Executes a custom Lua script with access to workflow variables, for logic no built-in step covers.</p>
+      </a>
+      <a class="tpl-card" href="/docs/steps/condition.html">
+        <div class="tpl-top"><h3>Condition</h3><span class="tpl-type">condition</span></div>
+        <p>Evaluates a boolean expression and branches the workflow down a true or false path.</p>
+      </a>
+      <a class="tpl-card" href="/docs/steps/loop.html">
+        <div class="tpl-top"><h3>Loop</h3><span class="tpl-type">loop</span></div>
+        <p>Iterates over a list, running the downstream branch once per item.</p>
+      </a>
+      <a class="tpl-card" href="/docs/steps/shopify-graphql.html">
+        <div class="tpl-top"><h3>Shopify GraphQL</h3><span class="tpl-type">shopify_graphql</span></div>
+        <p>Executes any Shopify Admin GraphQL query or mutation directly against the connected store.</p>
+      </a>
+      <a class="tpl-card" href="/docs/steps/gemini.html">
+        <div class="tpl-top"><h3>Gemini</h3><span class="tpl-type">gemini</span></div>
+        <p>Generates text with Google Gemini &mdash; summarize, classify, or draft content mid-automation.</p>
+      </a>
+      </div>
+
+    </main>
+  </div>
+  <footer class="site-footer">
+    &copy; 2026 FlowNet. <a href="https://www.youtube.com/@flownetio" target="_blank" rel="noopener">Follow the build &rarr;</a>
+  </footer>
+</div>
+</body>
+</html>
