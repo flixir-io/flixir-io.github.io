@@ -114,68 +114,42 @@
     margin: 0 auto 44px;
   }
 
-  /* Waitlist form */
-  .waitlist {
-    max-width: 460px;
-    margin: 0 auto;
-  }
-
-  .waitlist form {
+  .cta-row {
     display: flex;
-    gap: 10px;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
   }
 
-  .waitlist input[type="email"] {
-    flex: 1;
-    background: var(--bg-elevated);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 14px 16px;
-    color: var(--text-primary);
-    font-size: 15px;
-    outline: none;
-    transition: border-color 0.2s;
-  }
-
-  .waitlist input[type="email"]:focus {
-    border-color: var(--accent);
-  }
-
-  .waitlist button {
-    background: var(--accent);
-    color: white;
-    border: none;
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
     border-radius: 10px;
     padding: 14px 24px;
     font-size: 15px;
     font-weight: 600;
-    cursor: pointer;
-    transition: background 0.2s, transform 0.1s;
-    white-space: nowrap;
+    transition: background 0.2s, transform 0.1s, border-color 0.2s;
   }
 
-  .waitlist button:hover { background: var(--accent-hover); }
-  .waitlist button:active { transform: scale(0.98); }
+  .btn:active { transform: scale(0.98); }
 
-  .waitlist-note {
-    font-size: 13px;
-    color: var(--text-secondary);
-    margin-top: 14px;
+  .btn-primary {
+    background: var(--accent);
+    color: white;
+    border: 1px solid transparent;
   }
 
-  .success-message {
-    display: none;
-    background: rgba(52, 211, 153, 0.1);
-    border: 1px solid rgba(52, 211, 153, 0.3);
-    color: var(--success);
-    border-radius: 10px;
-    padding: 16px;
-    font-size: 15px;
+  .btn-primary:hover { background: var(--accent-hover); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border);
   }
 
-  @media (max-width: 480px) {
-    .waitlist form { flex-direction: column; }
-  }
+  .btn-secondary:hover { border-color: var(--accent); }
 
   /* Problem section */
   .problem {
@@ -286,15 +260,9 @@
       Connect triggers, steps, and AI in a canvas made for merchants.
     </p>
 
-    <div class="waitlist">
-      <form id="waitlist-form" action="https://docs.google.com/forms/d/e/X57qqHhpTYtXZETM8/formResponse" method="POST" target="hidden-iframe">
-        <input type="email" name="entry.498498169" id="email" placeholder="you@yourstore.com" required>
-        <button type="submit">Join waitlist</button>
-      </form>
-      <div class="success-message" id="success-message">
-        ✓ You're on the list. We'll email you when FlowNet is ready.
-      </div>
-      <p class="waitlist-note">No spam. One email when we launch.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="/docs/">Read the docs</a>
+      <a class="btn btn-secondary" href="https://www.youtube.com/@flownetio" target="_blank" rel="noopener">Follow the build</a>
     </div>
   </header>
 
@@ -334,20 +302,6 @@
     © 2026 FlowNet. <a href="https://www.youtube.com/@flownetio" target="_blank" rel="noopener">Follow the build →</a>
   </footer>
 </div>
-
-<iframe name="hidden-iframe" style="display:none;"></iframe>
-
-<script>
-  const form = document.getElementById('waitlist-form');
-  const successMessage = document.getElementById('success-message');
-
-  form.addEventListener('submit', function () {
-    setTimeout(function () {
-      form.style.display = 'none';
-      successMessage.style.display = 'block';
-    }, 600);
-  });
-</script>
 
 </body>
 </html>
