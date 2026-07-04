@@ -94,9 +94,9 @@
         <td class="field-desc">A specific field inside the trigger payload.</td>
       </tr>
       <tr>
-        <td><code class="field-name">steps.&lt;name&gt;.&lt;path&gt;</code></td>
-        <td class="field-desc"><code style="font-family:var(--mono)">steps.debug_a.variables.0.value</code></td>
-        <td class="field-desc">Output of an upstream step, addressed by its machine name.</td>
+        <td><code class="field-name">steps.&lt;name&gt;</code></td>
+        <td class="field-desc"><code style="font-family:var(--mono)">steps.debug_a</code></td>
+        <td class="field-desc">The entire output of an upstream step, addressed by its machine name.</td>
       </tr>
       <tr>
         <td><code class="field-name">tenant.&lt;path&gt;</code></td>
@@ -132,13 +132,22 @@
 
       <div class="note"><b>Note:</b> <code style="font-family:var(--mono)">trigger</code>, <code style="font-family:var(--mono)">tenant</code>, <code style="font-family:var(--mono)">env</code>, <code style="font-family:var(--mono)">workflow</code>, and <code style="font-family:var(--mono)">loop</code> are reserved namespaces &mdash; typing one of these names by itself (no dot) resolves to its entire payload, where applicable.</div>
 
+      <div class="note"><b>Note:</b> <code style="font-family:var(--mono)">steps.&lt;name&gt;</code> only resolves the step's <i>entire</i> output &mdash; you can't chain a field path onto it directly (e.g. <code style="font-family:var(--mono)">steps.debug_a.variables.0.value</code> does <b>not</b> work). To reach into a field, nested object, or array inside a step's output, wrap the bare step reference in <code style="font-family:var(--mono)">jsonpath(...)</code> with the full path in the JSONPath string instead &mdash; see below.</div>
+
       <h2>JSONPath</h2>
       <p class="body-text">
-        For reaching into nested or array data, use a JSONPath string starting with <code style="font-family:var(--mono)">$</code> as an argument to
-        <code style="font-family:var(--mono)">jsonpath(...)</code>. Only basic paths are supported &mdash; no filter expressions like <code style="font-family:var(--mono)">[?(@.price&gt;10)]</code>.
+        For reaching into a field, nested object, or array inside a JSON value, use a JSONPath string starting with
+        <code style="font-family:var(--mono)">$</code> as an argument to <code style="font-family:var(--mono)">jsonpath(...)</code>.
+        Only basic paths are supported &mdash; no filter expressions like <code style="font-family:var(--mono)">[?(@.price&gt;10)]</code>.
+      </p>
+      <p class="body-text">
+        The <b>source</b> argument (first argument) should be a bare reference &mdash; the whole trigger payload or the whole
+        output of a step &mdash; and the <b>entire</b> path, including any array indices, goes inside the JSONPath string.
+        Don't chain a field path onto <code style="font-family:var(--mono)">steps.&lt;name&gt;</code> before passing it in.
       </p>
       <pre class="code-block">jsonpath(trigger.payload, "$.items[0].name")
-jsonpath(steps.http_call_a.response, "$.data.id")</pre>
+jsonpath(steps.http_call_a, "$.response.data.id")
+jsonpath(steps.debug_a, "$.variables[0].value")</pre>
 
       <h2>Functions</h2>
       <p class="body-text">Functions can be nested inside one another and take other expressions as arguments.</p>
@@ -262,7 +271,7 @@ jsonpath(steps.http_call_a.response, "$.data.id")</pre>
       <p class="body-text">Arguments can themselves be function calls, references, or literals, nested as deep as you need:</p>
       <pre class="code-block">and(
   eq(trigger.title, "Product Updated"),
-  gt(steps.http_call_a.response.status, 199)
+  gt(jsonpath(steps.http_call_a, "$.response.status"), 199)
 )
 
 str.upper(str.trim(trigger.payload.title))
