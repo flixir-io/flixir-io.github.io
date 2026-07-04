@@ -95,7 +95,7 @@
         <li>Fetching extra data mid-workflow before a later step acts on it.</li>
       </ul>
 
-      <div class="note"><b>Note:</b> body <code style="font-family:var(--mono)">fields</code> values support expressions, so you can reference trigger and step data directly, e.g. <code style="font-family:var(--mono)">steps.debug_a.variables.0.value</code>.</div>
+      <div class="note"><b>Note:</b> body <code style="font-family:var(--mono)">fields</code> values support expressions, so you can reference trigger and step data directly &mdash; e.g. <code style="font-family:var(--mono)">trigger.payload.title</code>, or <code style="font-family:var(--mono)">jsonpath(steps.debug_a, "$.variables[0].value")</code> to reach into a step's output. See the <a href="/docs/expressions.html">Expressions guide</a> for the full syntax.</div>
 
     </main>
   </div>
