@@ -404,6 +404,8 @@
   .code-panel .tok-str { color: #fbbf24; }
   .code-panel .tok-num { color: #f472b6; }
   .code-panel .tok-muted { color: var(--text-secondary); }
+  .code-panel .tok-kw { color: #c084fc; }
+  .code-panel .tok-comment { color: var(--text-secondary); font-style: italic; }
 
   .expr-cta {
     display: inline-block;
@@ -469,10 +471,47 @@
         <div class="section-label">Why FlowNet</div>
         <ul class="why-list">
           <li><span class="why-mark">✓</span><span><b>No infrastructure to manage.</b> Hosting, retries, and run logs are handled for you.</span></li>
-          <li><span class="why-mark">✓</span><span><b>Visual-first, code when you need it.</b> Expressions and a Lua step cover what the canvas alone can't.</span></li>
+          <li><span class="why-mark">✓</span><span><b>Real code when you need it.</b> A full Lua step and expressions cover anything the canvas can't.</span></li>
           <li><span class="why-mark">✓</span><span><b>AI built in.</b> Drop a Gemini step into any workflow — no separate integration to wire up.</span></li>
           <li><span class="why-mark">✓</span><span><b>Shopify-native.</b> Triggers and steps speak the Admin API directly, with ready-made event presets.</span></li>
         </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="lua-spotlight">
+    <div class="section-label">Beyond no-code</div>
+    <h2>A real scripting language, one step away.</h2>
+    <p class="lede">
+      Most automation tools stop at simple expressions. FlowNet's Lua step runs actual Lua —
+      loops, conditionals, string and table manipulation — with your workflow's data passed
+      straight in as variables, and its return value passed straight back out as JSON.
+    </p>
+
+    <div class="expr-grid" style="margin-top:40px;">
+      <div>
+        <ul class="expr-features">
+          <li><b style="color:var(--text-primary);">A full language, not a sandboxed subset.</b> Loops, conditionals, and functions — anything an expression can't express.</li>
+          <li><b style="color:var(--text-primary);">Variables in, structured data out.</b> Arrays and objects convert to Lua tables automatically, and whatever you <code>return</code> comes back as JSON for the next step.</li>
+          <li><b style="color:var(--text-primary);">Failures stay contained.</b> Errors are caught and surfaced in the run log — a bad script fails its step, not the whole workflow.</li>
+          <li><b style="color:var(--text-primary);">Reach for it only when you need to.</b> Everything else in the workflow stays visual.</li>
+        </ul>
+        <a class="expr-cta" href="/docs/steps/lua-script.html">Read the Lua script step docs →</a>
+      </div>
+      <div class="code-panel">
+        <div class="code-titlebar"><span></span><span></span><span></span></div>
+        <pre><span class="tok-comment">-- sum line items, apply a bulk discount</span>
+<span class="tok-kw">local</span> total = <span class="tok-num">0</span>
+
+<span class="tok-kw">for</span> i, item <span class="tok-kw">in</span> <span class="tok-fn">ipairs</span>(order_items) <span class="tok-kw">do</span>
+  total = total + item.price * item.quantity
+<span class="tok-kw">end</span>
+
+<span class="tok-kw">if</span> total &gt; <span class="tok-num">200</span> <span class="tok-kw">then</span>
+  total = total * <span class="tok-num">0.9</span>
+<span class="tok-kw">end</span>
+
+<span class="tok-kw">return</span> { total = total, currency = <span class="tok-str">"USD"</span> }</pre>
       </div>
     </div>
   </section>
