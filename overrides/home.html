@@ -1,0 +1,679 @@
+{% extends "main.html" %}
+
+{% block extrahead %}
+  {{ super() }}
+  <style>
+
+  :root {
+    --bg: #0a0a0f;
+    --bg-elevated: #12121a;
+    --border: #232330;
+    --text-primary: #f4f4f6;
+    --text-secondary: #9a9ab0;
+    --accent: #6366f1;
+    --accent-hover: #818cf8;
+    --accent-glow: rgba(99, 102, 241, 0.25);
+    --success: #34d399;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    top: -20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 900px;
+    height: 900px;
+    background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 0;
+  }
+
+  .logo {
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: -0.02em;
+  }
+
+  .logo span { color: var(--accent); }
+
+  .nav-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 14px;
+    margin-left: 28px;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--text-primary); }
+
+  header.hero {
+    text-align: center;
+    padding: 100px 0 60px;
+  }
+
+  .badge {
+    display: inline-block;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-size: 13px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    margin-bottom: 28px;
+  }
+
+  .badge b { color: var(--success); font-weight: 600; }
+
+  h1 {
+    font-size: clamp(36px, 6vw, 58px);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 22px;
+  }
+
+  h1 .gradient {
+    background: linear-gradient(135deg, var(--accent) 0%, #a78bfa 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .subtitle {
+    font-size: 19px;
+    color: var(--text-secondary);
+    max-width: 580px;
+    margin: 0 auto 44px;
+  }
+
+  .cta-row {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    border-radius: 10px;
+    padding: 14px 24px;
+    font-size: 15px;
+    font-weight: 600;
+    transition: background 0.2s, transform 0.1s, border-color 0.2s;
+  }
+
+  .btn:active { transform: scale(0.98); }
+
+  .btn-primary {
+    background: var(--accent);
+    color: white;
+    border: 1px solid transparent;
+  }
+
+  .btn-primary:hover { background: var(--accent-hover); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+  }
+
+  .btn-secondary:hover { border-color: var(--accent); }
+
+  /* Section scaffolding, shared */
+  section {
+    padding: 80px 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .section-label {
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
+  }
+
+  section h2 {
+    font-size: clamp(26px, 4vw, 34px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    max-width: 620px;
+    margin-bottom: 16px;
+  }
+
+  section > p.lede {
+    color: var(--text-secondary);
+    font-size: 17px;
+    max-width: 600px;
+  }
+
+  /* Problem + Why, side by side */
+  .problem-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 56px;
+    align-items: start;
+  }
+
+  @media (max-width: 760px) {
+    .problem-grid { grid-template-columns: 1fr; gap: 36px; }
+  }
+
+  .why-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .why-list li {
+    display: flex;
+    gap: 12px;
+    font-size: 15px;
+    color: var(--text-secondary);
+  }
+
+  .why-list li b {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  .why-mark {
+    color: var(--success);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* How it works */
+  .diagram-wrap {
+    margin-top: 48px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px 20px;
+    overflow-x: auto;
+  }
+
+  .diagram-wrap svg { display: block; min-width: 760px; margin: 0 auto; }
+
+  .diagram-caption {
+    margin-top: 18px;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 13px;
+  }
+
+  .diagram-caption code {
+    font-family: var(--mono);
+    color: var(--accent-hover);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 1px 6px;
+    border-radius: 5px;
+    font-size: 12px;
+  }
+
+  /* Building blocks */
+  .blocks-subhead {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 44px 0 18px;
+  }
+
+  .blocks-subhead h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .blocks-subhead a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+  .blocks-subhead a:hover { color: var(--accent-hover); }
+
+  .block-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+  }
+
+  .block-grid.steps { grid-template-columns: repeat(4, 1fr); }
+
+  @media (max-width: 860px) {
+    .block-grid, .block-grid.steps { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 480px) {
+    .block-grid, .block-grid.steps { grid-template-columns: 1fr; }
+  }
+
+  .block-card {
+    display: block;
+    text-decoration: none;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .block-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+
+  .block-card .block-type {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 2px 7px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+
+  .block-card .block-type.trigger { background: var(--accent-glow); color: var(--accent-hover); }
+  .block-card .block-type.step { background: rgba(52, 211, 153, 0.12); color: var(--success); }
+
+  .block-card h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .block-card p {
+    color: var(--text-secondary);
+    font-size: 12.5px;
+    line-height: 1.5;
+  }
+
+  .see-all-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .see-all-card:hover { color: var(--accent-hover); }
+
+  /* Expressions */
+  .expr-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    margin-top: 40px;
+  }
+
+  @media (max-width: 760px) {
+    .expr-grid { grid-template-columns: 1fr; gap: 28px; }
+  }
+
+  .expr-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .expr-features li {
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+
+  .expr-features code {
+    font-family: var(--mono);
+    color: var(--accent-hover);
+    font-size: 13px;
+  }
+
+  .code-panel {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .code-panel .code-titlebar {
+    display: flex;
+    gap: 6px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .code-panel .code-titlebar span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--border);
+  }
+
+  .code-panel pre {
+    padding: 20px;
+    font-family: var(--mono);
+    font-size: 13px;
+    line-height: 1.7;
+    overflow-x: auto;
+  }
+
+  .code-panel .tok-fn { color: var(--accent-hover); }
+  .code-panel .tok-step { color: var(--success); }
+  .code-panel .tok-str { color: #fbbf24; }
+  .code-panel .tok-num { color: #f472b6; }
+  .code-panel .tok-muted { color: var(--text-secondary); }
+  .code-panel .tok-kw { color: #c084fc; }
+  .code-panel .tok-comment { color: var(--text-secondary); font-style: italic; }
+
+  .expr-cta {
+    display: inline-block;
+    margin-top: 8px;
+    color: var(--accent-hover);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .expr-cta:hover { color: var(--accent); }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 0;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 13px;
+  }
+
+  footer a { color: var(--text-secondary); text-decoration: none; margin: 0 10px; }
+  footer a:hover { color: var(--text-primary); }
+  footer .copyright { display: block; margin-bottom: 14px; }
+  </style>
+{% endblock %}
+
+{% block announce %}{% endblock %}
+
+{% block content %}
+
+<div class="container">
+<nav>
+<div class="logo">Flow<span>Net</span></div>
+<div class="nav-links">
+<a href="docs/">Docs</a>
+<a href="https://www.youtube.com/@flownetio" rel="noopener" target="_blank">YouTube</a>
+</div>
+</nav>
+<header class="hero">
+<div class="badge">🚧 <b>Pre-launch</b> — building in public</div>
+<h1>Workflow automation<br/><span class="gradient">built for Shopify.</span></h1>
+<p class="subtitle">
+      Visually automate your store's operations — no code, no dev ops, no headaches.
+      Connect triggers, steps, and AI in a canvas made for merchants.
+    </p>
+<div class="cta-row">
+<a class="btn btn-primary" href="docs/">Read the docs</a>
+<a class="btn btn-secondary" href="https://www.youtube.com/@flownetio" rel="noopener" target="_blank">Follow the build</a>
+</div>
+</header>
+<section class="problem">
+<div class="problem-grid">
+<div>
+<div class="section-label">The problem</div>
+<h2>Vibe coding gets you halfway there.</h2>
+<p class="lede">
+          AI can write the automation logic in seconds. But shipping it — hosting, scaling,
+          monitoring, retries, logs — is still a real infrastructure problem most merchants
+          can't (and shouldn't have to) solve themselves.
+        </p>
+</div>
+<div>
+<div class="section-label">Why FlowNet</div>
+<ul class="why-list">
+<li><span class="why-mark">✓</span><span><b>No infrastructure to manage.</b> Hosting, retries, and run logs are handled for you.</span></li>
+<li><span class="why-mark">✓</span><span><b>Real code when you need it.</b> A full Lua step and expressions cover anything the canvas can't.</span></li>
+<li><span class="why-mark">✓</span><span><b>AI built in.</b> Drop a Gemini step into any workflow — no separate integration to wire up.</span></li>
+<li><span class="why-mark">✓</span><span><b>Shopify-native.</b> Triggers and steps speak the Admin API directly, with ready-made event presets.</span></li>
+</ul>
+</div>
+</div>
+</section>
+<section class="lua-spotlight">
+<div class="section-label">Beyond no-code</div>
+<h2>A real scripting language, one step away.</h2>
+<p class="lede">
+      Most automation tools stop at simple expressions. FlowNet's Lua step runs actual Lua —
+      loops, conditionals, string and table manipulation — with your workflow's data passed
+      straight in as variables, and its return value passed straight back out as JSON.
+    </p>
+<div class="expr-grid" style="margin-top:40px;">
+<div>
+<ul class="expr-features">
+<li><b style="color:var(--text-primary);">A full language, not a sandboxed subset.</b> Loops, conditionals, and functions — anything an expression can't express.</li>
+<li><b style="color:var(--text-primary);">Variables in, structured data out.</b> Arrays and objects convert to Lua tables automatically, and whatever you <code>return</code> comes back as JSON for the next step.</li>
+<li><b style="color:var(--text-primary);">Failures stay contained.</b> Errors are caught and surfaced in the run log — a bad script fails its step, not the whole workflow.</li>
+<li><b style="color:var(--text-primary);">Reach for it only when you need to.</b> Everything else in the workflow stays visual.</li>
+</ul>
+<a class="expr-cta" href="docs/steps/lua-script/">Read the Lua script step docs →</a>
+</div>
+<div class="code-panel">
+<div class="code-titlebar"><span></span><span></span><span></span></div>
+<pre><span class="tok-comment">-- sum line items, apply a bulk discount</span>
+<span class="tok-kw">local</span> total = <span class="tok-num">0</span>
+
+<span class="tok-kw">for</span> i, item <span class="tok-kw">in</span> <span class="tok-fn">ipairs</span>(order_items) <span class="tok-kw">do</span>
+  total = total + item.price * item.quantity
+<span class="tok-kw">end</span>
+
+<span class="tok-kw">if</span> total &gt; <span class="tok-num">200</span> <span class="tok-kw">then</span>
+  total = total * <span class="tok-num">0.9</span>
+<span class="tok-kw">end</span>
+
+<span class="tok-kw">return</span> { total = total, currency = <span class="tok-str">"USD"</span> }</pre>
+</div>
+</div>
+</section>
+<section class="how-it-works">
+<div class="section-label">How it works</div>
+<h2>Trigger, decide, act — in one canvas.</h2>
+<p class="lede">
+      Every workflow starts with a trigger and flows through steps that read, decide, and act on your data.
+      Here's a small one: notify your team when a high-value product changes, with an AI-written summary attached.
+    </p>
+<div class="diagram-wrap">
+<svg aria-label="Example workflow: Shopify trigger, Condition step, Gemini step, HTTP Request step" role="img" viewbox="0 0 980 300" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<marker id="arrow" markerheight="7" markerwidth="7" orient="auto-start-reverse" refx="8" refy="5" viewbox="0 0 10 10">
+<path d="M0,0 L10,5 L0,10 z" fill="#6366f1"></path>
+</marker>
+<marker id="arrow-muted" markerheight="7" markerwidth="7" orient="auto-start-reverse" refx="8" refy="5" viewbox="0 0 10 10">
+<path d="M0,0 L10,5 L0,10 z" fill="#9a9ab0"></path>
+</marker>
+</defs>
+<!-- connecting lines -->
+<line marker-end="url(#arrow)" stroke="#6366f1" stroke-width="2" x1="200" x2="256" y1="86" y2="86"></line>
+<line marker-end="url(#arrow)" stroke="#6366f1" stroke-width="2" x1="440" x2="496" y1="86" y2="86"></line>
+<line marker-end="url(#arrow)" stroke="#6366f1" stroke-width="2" x1="680" x2="736" y1="86" y2="86"></line>
+<text fill="#818cf8" font-family="SFMono-Regular, Consolas, monospace" font-size="11" font-weight="600" text-anchor="middle" x="468" y="72">true</text>
+<!-- false branch -->
+<line marker-end="url(#arrow-muted)" stroke="#9a9ab0" stroke-dasharray="4 4" stroke-width="1.5" x1="320" x2="320" y1="132" y2="220"></line>
+<text fill="#9a9ab0" font-family="SFMono-Regular, Consolas, monospace" font-size="11" x="332" y="185">false</text>
+<text fill="#9a9ab0" font-family="SFMono-Regular, Consolas, monospace" font-size="11" x="332" y="200">no action taken</text>
+<!-- Node 1: Shopify trigger -->
+<rect fill="#12121a" height="92" rx="12" stroke="#232330" width="180" x="20" y="40"></rect>
+<rect fill="rgba(99,102,241,0.25)" height="18" rx="5" width="58" x="36" y="56"></rect>
+<text fill="#818cf8" font-family="-apple-system, sans-serif" font-size="10" font-weight="700" letter-spacing="0.5" text-anchor="middle" x="65" y="69">TRIGGER</text>
+<text fill="#f4f4f6" font-family="-apple-system, sans-serif" font-size="14" font-weight="600" x="36" y="98">Shopify</text>
+<text fill="#9a9ab0" font-family="-apple-system, sans-serif" font-size="12" x="36" y="116">Product Updated</text>
+<!-- Node 2: Condition -->
+<rect fill="#12121a" height="92" rx="12" stroke="#232330" width="180" x="260" y="40"></rect>
+<rect fill="rgba(52,211,153,0.12)" height="18" rx="5" width="42" x="276" y="56"></rect>
+<text fill="#34d399" font-family="-apple-system, sans-serif" font-size="10" font-weight="700" letter-spacing="0.5" text-anchor="middle" x="297" y="69">STEP</text>
+<text fill="#f4f4f6" font-family="-apple-system, sans-serif" font-size="14" font-weight="600" x="276" y="98">Condition</text>
+<text fill="#9a9ab0" font-family="SFMono-Regular, Consolas, monospace" font-size="12" x="276" y="116">price &gt; 50</text>
+<!-- Node 3: Gemini -->
+<rect fill="#12121a" height="92" rx="12" stroke="#232330" width="180" x="500" y="40"></rect>
+<rect fill="rgba(52,211,153,0.12)" height="18" rx="5" width="42" x="516" y="56"></rect>
+<text fill="#34d399" font-family="-apple-system, sans-serif" font-size="10" font-weight="700" letter-spacing="0.5" text-anchor="middle" x="537" y="69">STEP</text>
+<text fill="#f4f4f6" font-family="-apple-system, sans-serif" font-size="14" font-weight="600" x="516" y="98">Gemini</text>
+<text fill="#9a9ab0" font-family="-apple-system, sans-serif" font-size="12" x="516" y="116">Write a summary</text>
+<!-- Node 4: HTTP Request -->
+<rect fill="#12121a" height="92" rx="12" stroke="#232330" width="220" x="740" y="40"></rect>
+<rect fill="rgba(52,211,153,0.12)" height="18" rx="5" width="42" x="756" y="56"></rect>
+<text fill="#34d399" font-family="-apple-system, sans-serif" font-size="10" font-weight="700" letter-spacing="0.5" text-anchor="middle" x="777" y="69">STEP</text>
+<text fill="#f4f4f6" font-family="-apple-system, sans-serif" font-size="14" font-weight="600" x="756" y="98">HTTP Request</text>
+<text fill="#9a9ab0" font-family="-apple-system, sans-serif" font-size="12" x="756" y="116">Notify the team</text>
+</svg>
+</div>
+<p class="diagram-caption">
+      The condition's branch reads <code>gt(trigger.payload.price, 50)</code> — see the
+      <a href="docs/expressions/" style="color:var(--accent-hover); text-decoration:none;">Expressions guide</a> for the full syntax.
+    </p>
+</section>
+<section class="blocks">
+<div class="section-label">Building blocks</div>
+<h2>Everything you need, out of the box.</h2>
+<p class="lede">4 triggers and 7 steps ship with every workflow — no extra integrations to install.</p>
+<div class="blocks-subhead">
+<h3>Triggers</h3>
+</div>
+<div class="block-grid">
+<a class="block-card" href="docs/triggers/manual/">
+<span class="block-type trigger">Trigger</span>
+<h4>Manual</h4>
+<p>Run a workflow on demand from the editor.</p>
+</a>
+<a class="block-card" href="docs/triggers/webhook/">
+<span class="block-type trigger">Trigger</span>
+<h4>Webhook</h4>
+<p>Start a run from any HTTP request.</p>
+</a>
+<a class="block-card" href="docs/triggers/cron/">
+<span class="block-type trigger">Trigger</span>
+<h4>Scheduled</h4>
+<p>Run on a recurring cron schedule.</p>
+</a>
+<a class="block-card" href="docs/triggers/shopify/">
+<span class="block-type trigger">Trigger</span>
+<h4>Shopify</h4>
+<p>React to product and inventory events.</p>
+</a>
+</div>
+<div class="blocks-subhead">
+<h3>Steps</h3>
+<a href="docs/">See full reference →</a>
+</div>
+<div class="block-grid steps">
+<a class="block-card" href="docs/steps/debug/">
+<span class="block-type step">Step</span>
+<h4>Debug</h4>
+<p>Inspect state and variables in the run log.</p>
+</a>
+<a class="block-card" href="docs/steps/http-request/">
+<span class="block-type step">Step</span>
+<h4>HTTP Request</h4>
+<p>Call any external API.</p>
+</a>
+<a class="block-card" href="docs/steps/lua-script/">
+<span class="block-type step">Step</span>
+<h4>Lua script</h4>
+<p>Custom logic the canvas can't express.</p>
+</a>
+<a class="block-card" href="docs/steps/condition/">
+<span class="block-type step">Step</span>
+<h4>Condition</h4>
+<p>Branch true/false on an expression.</p>
+</a>
+<a class="block-card" href="docs/steps/loop/">
+<span class="block-type step">Step</span>
+<h4>Loop</h4>
+<p>Repeat a branch over a list.</p>
+</a>
+<a class="block-card" href="docs/steps/shopify-graphql/">
+<span class="block-type step">Step</span>
+<h4>Shopify GraphQL</h4>
+<p>Read or write directly via the Admin API.</p>
+</a>
+<a class="block-card" href="docs/steps/gemini/">
+<span class="block-type step">Step</span>
+<h4>Gemini</h4>
+<p>Generate text with Google Gemini, inline.</p>
+</a>
+<a class="block-card see-all-card" href="docs/">
+        See all triggers &amp; steps →
+      </a>
+</div>
+</section>
+<section class="expressions">
+<div class="section-label">Under the hood</div>
+<h2>A real expression language, when you need it.</h2>
+<div class="expr-grid">
+<div>
+<ul class="expr-features">
+<li>Reference <code>trigger</code>, <code>steps.*</code>, <code>tenant</code>, <code>env</code>, and <code>loop</code> data directly in any expression-aware field.</li>
+<li>Built-in functions for <code>date.*</code>, <code>str.*</code>, <code>math.*</code>, and boolean logic like <code>eq</code>, <code>gt</code>, <code>and</code>.</li>
+<li><code>jsonpath(...)</code> for reaching into nested objects and arrays.</li>
+<li>Secrets and workspace variables via <code>secrets.KEY</code> and <code>vars.KEY</code> — never logged when they shouldn't be.</li>
+<li>A Monaco-based editor with syntax highlighting and autocomplete for every function, step, and field.</li>
+</ul>
+<a class="expr-cta" href="docs/expressions/">Read the Expressions guide →</a>
+</div>
+<div class="code-panel">
+<div class="code-titlebar"><span></span><span></span><span></span></div>
+<pre><span class="tok-fn">and</span>(
+  <span class="tok-fn">eq</span>(trigger.title, <span class="tok-str">"Product Updated"</span>),
+  <span class="tok-fn">gt</span>(
+    <span class="tok-fn">jsonpath</span>(<span class="tok-step">steps</span>.http_call_a, <span class="tok-str">"$.response.status"</span>),
+    <span class="tok-num">199</span>
+  )
+)</pre>
+</div>
+</div>
+</section>
+<footer>
+<span class="copyright">© 2026 FlowNet</span>
+<a href="docs/">Docs</a>
+<a href="https://www.youtube.com/@flownetio" rel="noopener" target="_blank">YouTube</a>
+</footer>
+</div>
+{% endblock %}
+
+{% block footer %}{% endblock %}
