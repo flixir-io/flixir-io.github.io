@@ -75,10 +75,10 @@ nav:
           - Loop: docs/steps/loop.md
           - Shopify GraphQL: docs/steps/shopify-graphql.md
           - Gemini: docs/steps/gemini.md
-          - "Storage: Write": docs/steps/storage-write.md
-          - "Storage: Read": docs/steps/storage-read.md
-          - "Storage: Update": docs/steps/storage-update.md
-          - "Storage: Delete": docs/steps/storage-delete.md
+          - Storage Write: docs/steps/storage-write.md
+          - Storage Read: docs/steps/storage-read.md
+          - Storage Update: docs/steps/storage-update.md
+          - Storage Delete: docs/steps/storage-delete.md
 
 extra:
   social:
