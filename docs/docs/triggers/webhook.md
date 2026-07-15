@@ -1,6 +1,6 @@
 ---
 title: Webhook
-description: "Trigger a FlowNet workflow via an HTTP request."
+description: "Trigger a Flixir workflow via an HTTP request."
 ---
 # Webhook
 
@@ -15,7 +15,7 @@ No fields to fill in — the webhook URL is generated automatically once the tri
 ## When to use it
 
 - Receiving events from a third-party system that isn't Shopify.
-- Connecting a custom app, form, or internal tool to a FlowNet workflow.
+- Connecting a custom app, form, or internal tool to a Flixir workflow.
 - Chaining workflows together by calling one workflow's webhook from another.
 
 !!! note

@@ -1,6 +1,6 @@
 ---
 title: Storage: Delete step
-description: "Reference for the FlowNet Storage: Delete step template."
+description: "Reference for the Flixir Storage: Delete step template."
 ---
 # Storage: Delete step
 

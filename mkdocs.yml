@@ -1,6 +1,6 @@
-site_name: FlowNet
+site_name: Flixir
 site_description: >-
-  FlowNet is a visual workflow automation engine built for Shopify.
+  Flixir is a visual workflow automation engine built for Shopify.
   Automate your store without writing code.
 site_url: https://flixir-io.github.io/
 repo_url: https://github.com/flixir-io/flixir-io.github.io
@@ -83,5 +83,5 @@ nav:
 extra:
   social:
     - icon: fontawesome/brands/youtube
-      link: https://www.youtube.com/@flownetio
-      name: FlowNet on YouTube
+      link: https://www.youtube.com/@Flixirio
+      name: Flixir on YouTube

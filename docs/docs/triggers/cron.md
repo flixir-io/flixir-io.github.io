@@ -1,12 +1,12 @@
 ---
 title: Scheduled trigger
-description: "Run a FlowNet workflow on a cron schedule, with ready-made presets."
+description: "Run a Flixir workflow on a cron schedule, with ready-made presets."
 ---
 # Scheduled trigger
 
 > trigger_type: **cron**
 
-Runs a workflow on a recurring schedule, defined as a cron expression. No external event needed — FlowNet fires the trigger itself at the configured times.
+Runs a workflow on a recurring schedule, defined as a cron expression. No external event needed — Flixir fires the trigger itself at the configured times.
 
 ## Configuration
 

@@ -1,10 +1,10 @@
 ---
 title: Base templates
-description: "Reference for every built-in FlowNet trigger and step template."
+description: "Reference for every built-in Flixir trigger and step template."
 ---
 # Base templates
 
-Every FlowNet workflow is built from two kinds of blocks: **triggers**, which start a run, and **steps**, which do the work. These are the built-in templates that ship with the `core` and `ai` integrations — available in every workflow, no setup required.
+Every Flixir workflow is built from two kinds of blocks: **triggers**, which start a run, and **steps**, which do the work. These are the built-in templates that ship with the `core` and `ai` integrations — available in every workflow, no setup required.
 
 ## Guides
 
@@ -17,8 +17,8 @@ How parameter fields work under the hood.
 
 A workflow starts with exactly one trigger. It defines the event that kicks off a run and the data available to the rest of the workflow.
 
-- **[Manual Trigger](triggers/manual.md)** — Runs a workflow on demand, straight from the FlowNet editor. No external event required.
-- **[Webhook](triggers/webhook.md)** — Fires a workflow whenever FlowNet receives an HTTP request on the workflow's unique webhook URL.
+- **[Manual Trigger](triggers/manual.md)** — Runs a workflow on demand, straight from the Flixir editor. No external event required.
+- **[Webhook](triggers/webhook.md)** — Fires a workflow whenever Flixir receives an HTTP request on the workflow's unique webhook URL.
 - **[Scheduled](triggers/cron.md)** — Runs a workflow on a recurring schedule using a standard cron expression, with ready-made presets.
 - **[Shopify](triggers/shopify.md)** — Fires a workflow from Shopify store events — new products, updates, inventory changes, and more.
 - **[Storage Changed](triggers/storage-changed.md)** — Fires a workflow whenever an item in a Storage is created, updated, or deleted.

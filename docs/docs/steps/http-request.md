@@ -1,6 +1,6 @@
 ---
 title: HTTP Request step
-description: "Reference for the FlowNet HTTP Request step template."
+description: "Reference for the Flixir HTTP Request step template."
 ---
 # HTTP Request step
 
@@ -20,7 +20,7 @@ Calls any HTTP endpoint with a configurable method, query string, headers, and b
 
 ## When to use it
 
-- Calling a third-party API that doesn't have a dedicated FlowNet step.
+- Calling a third-party API that doesn't have a dedicated Flixir step.
 - Posting workflow data to an internal service, spreadsheet backend, or notification tool.
 - Fetching extra data mid-workflow before a later step acts on it.
 

@@ -1,6 +1,6 @@
 ---
 title: Shopify GraphQL step
-description: "Reference for the FlowNet Shopify GraphQL step template."
+description: "Reference for the Flixir Shopify GraphQL step template."
 ---
 # Shopify GraphQL step
 

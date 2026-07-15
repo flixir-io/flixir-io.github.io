@@ -1,6 +1,6 @@
 ---
 title: Expressions
-description: "Reference for FlowNet's parameter expression language: literals, references, JSONPath, and built-in functions."
+description: "Reference for Flixir's parameter expression language: literals, references, JSONPath, and built-in functions."
 ---
 # Expressions
 

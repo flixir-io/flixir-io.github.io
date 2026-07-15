@@ -1,12 +1,12 @@
 ---
 title: Manual Trigger
-description: "Manually run a FlowNet workflow on demand."
+description: "Manually run a Flixir workflow on demand."
 ---
 # Manual Trigger
 
 > trigger_type: **manual**
 
-Starts a workflow run immediately when you click **Run** in the FlowNet editor. There's no external event to configure — it's the fastest way to test a workflow while you're building it.
+Starts a workflow run immediately when you click **Run** in the Flixir editor. There's no external event to configure — it's the fastest way to test a workflow while you're building it.
 
 ## Configuration
 

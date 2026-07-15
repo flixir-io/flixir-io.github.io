@@ -1,6 +1,6 @@
 ---
 title: Storage Changed trigger
-description: "Trigger a FlowNet workflow when an item in a Storage is created, updated, or deleted."
+description: "Trigger a Flixir workflow when an item in a Storage is created, updated, or deleted."
 ---
 # Storage Changed trigger
 
@@ -30,7 +30,7 @@ The triggered run's `trigger.payload` includes:
 
 - Reacting whenever a record is added to a catalog or list you maintain in Storage.
 - Chaining workflows together — one workflow writes to Storage, another reacts to that change.
-- Keeping an external system in sync with data you store in FlowNet.
+- Keeping an external system in sync with data you store in Flixir.
 
 !!! note
     There's no built-in threshold trigger (e.g. "fire once a Storage passes 100 items") — each change fires the trigger once. Build thresholds yourself with **Storage Changed** → **[Storage: Read](../steps/storage-read.md)** → **Condition**.

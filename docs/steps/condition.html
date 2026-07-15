@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RK04ZE6Q8G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RK04ZE6Q8G');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Condition step — Flixir Docs</title>
+<meta name="description" content="Reference for the Flixir Condition step template.">
+<link rel="stylesheet" href="/docs/assets/style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="topnav">
+    <a class="logo" href="/">Flow<span>Net</span></a>
+    <div class="nav-links">
+      <a href="/docs/" class="active">Docs</a>
+      <a href="https://www.youtube.com/@Flixirio" target="_blank" rel="noopener">YouTube</a>
+    </div>
+  </nav>
+  <div class="layout">
+    <aside>
+    <div class="side-label">Overview</div>
+    <ul>
+      <li><a href="/docs/" class="">All templates</a></li>
+    </ul>
+    <div class="side-label">Triggers</div>
+    <ul>
+      <li><a href="/docs/triggers/manual.html" class="">Manual Trigger</a></li>
+      <li><a href="/docs/triggers/webhook.html" class="">Webhook</a></li>
+      <li><a href="/docs/triggers/cron.html" class="">Scheduled</a></li>
+      <li><a href="/docs/triggers/shopify.html" class="">Shopify</a></li>
+    </ul>
+    <div class="side-label">Steps</div>
+    <ul>
+      <li><a href="/docs/steps/debug.html" class="">Debug</a></li>
+      <li><a href="/docs/steps/http-request.html" class="">HTTP Request</a></li>
+      <li><a href="/docs/steps/lua-script.html" class="">Lua script</a></li>
+      <li><a href="/docs/steps/condition.html" class="active">Condition</a></li>
+      <li><a href="/docs/steps/loop.html" class="">Loop</a></li>
+      <li><a href="/docs/steps/shopify-graphql.html" class="">Shopify GraphQL</a></li>
+      <li><a href="/docs/steps/gemini.html" class="">Gemini</a></li>
+    </ul>
+  </aside>
+    <main>
+      
+      <div class="breadcrumb"><a href="/docs/">Docs</a> / Step</div>
+      <div class="kicker">Step</div>
+      <h1>Condition</h1>
+      <div class="type-badge">step_type: <b style="color:var(--text-primary)">condition</b></div>
+
+      <p class="lede">Evaluates a boolean expression and splits the workflow into a <b>true</b> branch and a <b>false</b> branch, so downstream steps only run down the matching path.</p>
+
+      <h2>Configuration</h2>
+<table class="fields">
+      <tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+      <tr>
+        <td><code class="field-name">expression</code></td>
+        <td><span class="field-type">string</span></td>
+        <td><span class="req yes">required</span></td>
+        <td class="field-desc">A boolean expression evaluated against workflow data. Supports literals, <code style="font-family:var(--mono)">trigger.*</code> / <code style="font-family:var(--mono)">steps.*</code> / <code style="font-family:var(--mono)">env.*</code> references, <code style="font-family:var(--mono)">jsonpath(...)</code>, and nested functions like <code style="font-family:var(--mono)">math.add</code>, <code style="font-family:var(--mono)">str.upper</code>, <code style="font-family:var(--mono)">and</code>, <code style="font-family:var(--mono)">not</code>.</td>
+      </tr>
+    </table>
+
+      <h2>Example expressions</h2>
+      <pre class="code-block">eq(trigger.title, "Product Updated")
+gt(trigger.variants_count, 0)
+eq(jsonpath(steps.condition_a, "$.result"), true)
+and(eq(1, 1), not(false))</pre>
+
+      <h2>When to use it</h2>
+      <ul class="plain">
+        <li>Branching a workflow based on trigger data &mdash; e.g. only continue for products above a price threshold.</li>
+        <li>Gating a step behind an environment or account flag.</li>
+        <li>Combining outputs from earlier steps with boolean logic before acting on them.</li>
+      </ul>
+
+    </main>
+  </div>
+  <footer class="site-footer">
+    &copy; 2026 Flixir. <a href="https://www.youtube.com/@Flixirio" target="_blank" rel="noopener">Follow the build &rarr;</a>
+  </footer>
+</div>
+</body>
+</html>

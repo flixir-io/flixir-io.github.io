@@ -1,6 +1,6 @@
 ---
 title: Storage: Update step
-description: "Reference for the FlowNet Storage: Update step template."
+description: "Reference for the Flixir Storage: Update step template."
 ---
 # Storage: Update step
 

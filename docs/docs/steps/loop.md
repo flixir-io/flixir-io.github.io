@@ -1,6 +1,6 @@
 ---
 title: Loop step
-description: "Reference for the FlowNet Loop step template."
+description: "Reference for the Flixir Loop step template."
 ---
 # Loop step
 

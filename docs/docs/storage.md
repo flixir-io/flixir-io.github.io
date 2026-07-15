@@ -1,10 +1,10 @@
 ---
 title: Storage
-description: "Guide to FlowNet's Storage feature — store and query your own structured data inside workflows."
+description: "Guide to Flixir's Storage feature — store and query your own structured data inside workflows."
 ---
 # Storage
 
-Store your own structured data inside FlowNet — a product catalog, a list of VIP customers, running counters, anything with custom fields — and read, write, update, or delete it right from a workflow.
+Store your own structured data inside Flixir — a product catalog, a list of VIP customers, running counters, anything with custom fields — and read, write, update, or delete it right from a workflow.
 
 ## Concepts
 

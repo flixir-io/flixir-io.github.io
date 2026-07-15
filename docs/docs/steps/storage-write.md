@@ -1,6 +1,6 @@
 ---
 title: Storage: Write step
-description: "Reference for the FlowNet Storage: Write step template."
+description: "Reference for the Flixir Storage: Write step template."
 ---
 # Storage: Write step
 

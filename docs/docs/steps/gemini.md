@@ -1,6 +1,6 @@
 ---
 title: Gemini step
-description: "Reference for the FlowNet Gemini step template."
+description: "Reference for the Flixir Gemini step template."
 ---
 # Gemini step
 

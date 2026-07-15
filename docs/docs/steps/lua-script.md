@@ -1,6 +1,6 @@
 ---
 title: Lua script step
-description: "Reference for the FlowNet Lua script step template."
+description: "Reference for the Flixir Lua script step template."
 ---
 # Lua script step
 

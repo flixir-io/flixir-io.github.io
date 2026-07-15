@@ -1,6 +1,6 @@
 ---
 title: Condition step
-description: "Reference for the FlowNet Condition step template."
+description: "Reference for the Flixir Condition step template."
 ---
 # Condition step
 

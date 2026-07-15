@@ -1,6 +1,6 @@
 ---
 title: Storage: Read step
-description: "Reference for the FlowNet Storage: Read step template."
+description: "Reference for the Flixir Storage: Read step template."
 ---
 # Storage: Read step
 

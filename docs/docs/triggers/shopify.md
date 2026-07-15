@@ -1,6 +1,6 @@
 ---
 title: Shopify trigger
-description: "Trigger a FlowNet workflow from Shopify store events."
+description: "Trigger a Flixir workflow from Shopify store events."
 ---
 # Shopify trigger
 

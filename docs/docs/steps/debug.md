@@ -1,6 +1,6 @@
 ---
 title: Debug step
-description: "Reference for the FlowNet Debug step template."
+description: "Reference for the Flixir Debug step template."
 ---
 # Debug step
 
