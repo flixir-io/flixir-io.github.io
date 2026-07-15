@@ -1,5 +1,5 @@
 ---
-title: Storage: Write step
+title: Storage Write step
 description: "Reference for the Flixir Storage: Write step template."
 ---
 # Storage: Write step

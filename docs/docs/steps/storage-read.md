@@ -1,5 +1,5 @@
 ---
-title: Storage: Read step
+title: Storage Read step
 description: "Reference for the Flixir Storage: Read step template."
 ---
 # Storage: Read step

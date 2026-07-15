@@ -1,5 +1,5 @@
 ---
-title: Storage: Delete step
+title: Storage Delete step
 description: "Reference for the Flixir Storage: Delete step template."
 ---
 # Storage: Delete step

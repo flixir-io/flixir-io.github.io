@@ -1,5 +1,5 @@
 ---
-title: Storage: Update step
+title: Storage Update step
 description: "Reference for the Flixir Storage: Update step template."
 ---
 # Storage: Update step
