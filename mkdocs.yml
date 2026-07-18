@@ -73,6 +73,7 @@ nav:
           - Lua script: docs/steps/lua-script.md
           - Condition: docs/steps/condition.md
           - Loop: docs/steps/loop.md
+          - Sleep: docs/steps/sleep.md
           - Shopify GraphQL: docs/steps/shopify-graphql.md
           - Gemini: docs/steps/gemini.md
           - Storage Write: docs/steps/storage-write.md
