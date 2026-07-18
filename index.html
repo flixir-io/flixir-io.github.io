@@ -1,0 +1,1910 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Flixir is a visual workflow automation engine built for Shopify. Automate your store without writing code.">
+      
+      
+      
+        <link rel="canonical" href="https://flixir-io.github.io/">
+      
+      
+      
+        <link rel="next" href="docs/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Flixir — Workflow Automation for Shopify Merchants - Flixir</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="assets/extra.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  
+  <style>
+
+  :root {
+    --bg: #0a0a0f;
+    --bg-elevated: #12121a;
+    --border: #232330;
+    --text-primary: #f4f4f6;
+    --text-secondary: #9a9ab0;
+    --accent: #6366f1;
+    --accent-hover: #818cf8;
+    --accent-glow: rgba(99, 102, 241, 0.25);
+    --success: #34d399;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    top: -20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 900px;
+    height: 900px;
+    background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 0;
+  }
+
+  .logo {
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: -0.02em;
+  }
+
+  .logo span { color: var(--accent); }
+
+  .nav-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 14px;
+    margin-left: 28px;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--text-primary); }
+
+  header.hero {
+    text-align: center;
+    padding: 100px 0 60px;
+  }
+
+  .badge {
+    display: inline-block;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-size: 13px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    margin-bottom: 28px;
+  }
+
+  .badge b { color: var(--success); font-weight: 600; }
+
+  h1 {
+    font-size: clamp(36px, 6vw, 58px);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 22px;
+  }
+
+  h1 .gradient {
+    background: linear-gradient(135deg, var(--accent) 0%, #a78bfa 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .subtitle {
+    font-size: 19px;
+    color: var(--text-secondary);
+    max-width: 580px;
+    margin: 0 auto 44px;
+  }
+
+  .cta-row {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    border-radius: 10px;
+    padding: 14px 24px;
+    font-size: 15px;
+    font-weight: 600;
+    transition: background 0.2s, transform 0.1s, border-color 0.2s;
+  }
+
+  .btn:active { transform: scale(0.98); }
+
+  .btn-primary {
+    background: var(--accent);
+    color: white;
+    border: 1px solid transparent;
+  }
+
+  .btn-primary:hover { background: var(--accent-hover); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+  }
+
+  .btn-secondary:hover { border-color: var(--accent); }
+
+  /* Section scaffolding, shared */
+  section {
+    padding: 80px 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .section-label {
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
+  }
+
+  section h2 {
+    font-size: clamp(26px, 4vw, 34px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    max-width: 620px;
+    margin-bottom: 16px;
+  }
+
+  section > p.lede {
+    color: var(--text-secondary);
+    font-size: 17px;
+    max-width: 600px;
+  }
+
+  /* Problem + Why, side by side */
+  .problem-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 56px;
+    align-items: start;
+  }
+
+  @media (max-width: 760px) {
+    .problem-grid { grid-template-columns: 1fr; gap: 36px; }
+  }
+
+  .why-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .why-list li {
+    display: flex;
+    gap: 12px;
+    font-size: 15px;
+    color: var(--text-secondary);
+  }
+
+  .why-list li b {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  .why-mark {
+    color: var(--success);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* How it works */
+  .diagram-wrap {
+    margin-top: 48px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px 20px;
+    overflow-x: auto;
+  }
+
+  .diagram-wrap svg { display: block; min-width: 760px; margin: 0 auto; }
+
+  .diagram-caption {
+    margin-top: 18px;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 13px;
+  }
+
+  .diagram-caption code {
+    font-family: var(--mono);
+    color: var(--accent-hover);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 1px 6px;
+    border-radius: 5px;
+    font-size: 12px;
+  }
+
+  /* Building blocks */
+  .blocks-subhead {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 44px 0 18px;
+  }
+
+  .blocks-subhead h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .blocks-subhead a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+  .blocks-subhead a:hover { color: var(--accent-hover); }
+
+  .block-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+  }
+
+  .block-grid.steps { grid-template-columns: repeat(4, 1fr); }
+
+  @media (max-width: 860px) {
+    .block-grid, .block-grid.steps { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 480px) {
+    .block-grid, .block-grid.steps { grid-template-columns: 1fr; }
+  }
+
+  .block-card {
+    display: block;
+    text-decoration: none;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .block-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+
+  .block-card .block-type {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 2px 7px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+
+  .block-card .block-type.trigger { background: var(--accent-glow); color: var(--accent-hover); }
+  .block-card .block-type.step { background: rgba(52, 211, 153, 0.12); color: var(--success); }
+
+  .block-card h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .block-card p {
+    color: var(--text-secondary);
+    font-size: 12.5px;
+    line-height: 1.5;
+  }
+
+  .see-all-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .see-all-card:hover { color: var(--accent-hover); }
+
+  /* Expressions */
+  .expr-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    margin-top: 40px;
+  }
+
+  @media (max-width: 760px) {
+    .expr-grid { grid-template-columns: 1fr; gap: 28px; }
+  }
+
+  .expr-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .expr-features li {
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+
+  .expr-features code {
+    font-family: var(--mono);
+    color: var(--accent-hover);
+    font-size: 13px;
+  }
+
+  .code-panel {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .code-panel .code-titlebar {
+    display: flex;
+    gap: 6px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .code-panel .code-titlebar span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--border);
+  }
+
+  .code-panel pre {
+    padding: 20px;
+    font-family: var(--mono);
+    font-size: 13px;
+    line-height: 1.7;
+    overflow-x: auto;
+  }
+
+  .code-panel .tok-fn { color: var(--accent-hover); }
+  .code-panel .tok-step { color: var(--success); }
+  .code-panel .tok-str { color: #fbbf24; }
+  .code-panel .tok-num { color: #f472b6; }
+  .code-panel .tok-muted { color: var(--text-secondary); }
+  .code-panel .tok-kw { color: #c084fc; }
+  .code-panel .tok-comment { color: var(--text-secondary); font-style: italic; }
+
+  .expr-cta {
+    display: inline-block;
+    margin-top: 8px;
+    color: var(--accent-hover);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .expr-cta:hover { color: var(--accent); }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 0;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 13px;
+  }
+
+  footer a { color: var(--text-secondary); text-decoration: none; margin: 0 10px; }
+  footer a:hover { color: var(--text-primary); }
+  footer .copyright { display: block; margin-bottom: 14px; }
+  </style>
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="Flixir" class="md-header__button md-logo" aria-label="Flixir" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Flixir
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Flixir — Workflow Automation for Shopify Merchants
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/flixir-io/flixir-io.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    flixir-io/flixir-io.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="docs/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Docs
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="Flixir" class="md-nav__button md-logo" aria-label="Flixir" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Flixir
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/flixir-io/flixir-io.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    flixir-io/flixir-io.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="docs/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docs
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Docs
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guides
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guides
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="docs/expressions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Expressions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="docs/storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Storage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Triggers
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Triggers
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="docs/triggers/manual/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Manual
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="docs/triggers/webhook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Webhook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="docs/triggers/cron/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scheduled
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="docs/triggers/shopify/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shopify
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="docs/triggers/storage-changed/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Storage Changed
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Steps
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Steps
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="docs/steps/debug/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Debug
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="docs/steps/http-request/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HTTP Request
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="docs/steps/lua-script/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lua script
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="docs/steps/condition/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Condition
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="docs/steps/loop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Loop
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="docs/steps/sleep/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sleep
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="docs/steps/shopify-graphql/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shopify GraphQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="docs/steps/gemini/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gemini
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="docs/steps/storage-write/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Storage Write
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="docs/steps/storage-read/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Storage Read
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="docs/steps/storage-update/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Storage Update
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="docs/steps/storage-delete/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Storage Delete
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+
+<div class="container">
+<nav>
+<div class="logo">Fli<span>xir</span></div>
+<div class="nav-links">
+<a href="docs/">Docs</a>
+<a href="https://www.youtube.com/@Flixirio" rel="noopener" target="_blank">YouTube</a>
+</div>
+</nav>
+<header class="hero">
+<div class="badge">🚧 <b>Pre-launch</b> — building in public</div>
+<h1>Workflow automation<br/><span class="gradient">built for Shopify.</span></h1>
+<p class="subtitle">
+      Visually automate your store's operations — no code, no dev ops, no headaches.
+      Connect triggers, steps, and AI in a canvas made for merchants.
+    </p>
+<div class="cta-row">
+<a class="btn btn-primary" href="docs/">Read the docs</a>
+<a class="btn btn-secondary" href="https://www.youtube.com/@Flixirio" rel="noopener" target="_blank">Follow the build</a>
+</div>
+</header>
+<section class="problem">
+<div class="problem-grid">
+<div>
+<div class="section-label">The problem</div>
+<h2>Vibe coding gets you halfway there.</h2>
+<p class="lede">
+          AI can write the automation logic in seconds. But shipping it — hosting, scaling,
+          monitoring, retries, logs — is still a real infrastructure problem most merchants
+          can't (and shouldn't have to) solve themselves.
+        </p>
+</div>
+<div>
+<div class="section-label">Why Flixir</div>
+<ul class="why-list">
+<li><span class="why-mark">✓</span><span><b>No infrastructure to manage.</b> Hosting, retries, and run logs are handled for you.</span></li>
+<li><span class="why-mark">✓</span><span><b>Real code when you need it.</b> A full Lua step and expressions cover anything the canvas can't.</span></li>
+<li><span class="why-mark">✓</span><span><b>AI built in.</b> Drop a Gemini step into any workflow — no separate integration to wire up.</span></li>
+<li><span class="why-mark">✓</span><span><b>Shopify-native.</b> Triggers and steps speak the Admin API directly, with ready-made event presets.</span></li>
+</ul>
+</div>
+</div>
+</section>
+<section class="lua-spotlight">
+<div class="section-label">Beyond no-code</div>
+<h2>A real scripting language, one step away.</h2>
+<p class="lede">
+      Most automation tools stop at simple expressions. Flixir's Lua step runs actual Lua —
+      loops, conditionals, string and table manipulation — with your workflow's data passed
+      straight in as variables, and its return value passed straight back out as JSON.
+    </p>
+<div class="expr-grid" style="margin-top:40px;">
+<div>
+<ul class="expr-features">
+<li><b style="color:var(--text-primary);">A full language, not a sandboxed subset.</b> Loops, conditionals, and functions — anything an expression can't express.</li>
+<li><b style="color:var(--text-primary);">Variables in, structured data out.</b> Arrays and objects convert to Lua tables automatically, and whatever you <code>return</code> comes back as JSON for the next step.</li>
+<li><b style="color:var(--text-primary);">Failures stay contained.</b> Errors are caught and surfaced in the run log — a bad script fails its step, not the whole workflow.</li>
+<li><b style="color:var(--text-primary);">Reach for it only when you need to.</b> Everything else in the workflow stays visual.</li>
+</ul>
+<a class="expr-cta" href="docs/steps/lua-script/">Read the Lua script step docs →</a>
+</div>
+<div class="code-panel">
+<div class="code-titlebar"><span></span><span></span><span></span></div>
+<pre><span class="tok-comment">-- sum line items, apply a bulk discount</span>
+<span class="tok-kw">local</span> total = <span class="tok-num">0</span>
+
+<span class="tok-kw">for</span> i, item <span class="tok-kw">in</span> <span class="tok-fn">ipairs</span>(order_items) <span class="tok-kw">do</span>
+  total = total + item.price * item.quantity
+<span class="tok-kw">end</span>
+
+<span class="tok-kw">if</span> total &gt; <span class="tok-num">200</span> <span class="tok-kw">then</span>
+  total = total * <span class="tok-num">0.9</span>
+<span class="tok-kw">end</span>
+
+<span class="tok-kw">return</span> { total = total, currency = <span class="tok-str">"USD"</span> }</pre>
+</div>
+</div>
+</section>
+<section class="how-it-works">
+<div class="section-label">How it works</div>
+<h2>Trigger, decide, act — in one canvas.</h2>
+<p class="lede">
+      Every workflow starts with a trigger and flows through steps that read, decide, and act on your data.
+      Here's a small one: notify your team when a high-value product changes, with an AI-written summary attached.
+    </p>
+<div class="diagram-wrap">
+<svg aria-label="Example workflow: Shopify trigger, Condition step, Gemini step, HTTP Request step" role="img" viewbox="0 0 980 300" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<marker id="arrow" markerheight="7" markerwidth="7" orient="auto-start-reverse" refx="8" refy="5" viewbox="0 0 10 10">
+<path d="M0,0 L10,5 L0,10 z" fill="#6366f1"></path>
+</marker>
+<marker id="arrow-muted" markerheight="7" markerwidth="7" orient="auto-start-reverse" refx="8" refy="5" viewbox="0 0 10 10">
+<path d="M0,0 L10,5 L0,10 z" fill="#9a9ab0"></path>
+</marker>
+</defs>
+<!-- connecting lines -->
+<line marker-end="url(#arrow)" stroke="#6366f1" stroke-width="2" x1="200" x2="256" y1="86" y2="86"></line>
+<line marker-end="url(#arrow)" stroke="#6366f1" stroke-width="2" x1="440" x2="496" y1="86" y2="86"></line>
+<line marker-end="url(#arrow)" stroke="#6366f1" stroke-width="2" x1="680" x2="736" y1="86" y2="86"></line>
+<text fill="#818cf8" font-family="SFMono-Regular, Consolas, monospace" font-size="11" font-weight="600" text-anchor="middle" x="468" y="72">true</text>
+<!-- false branch -->
+<line marker-end="url(#arrow-muted)" stroke="#9a9ab0" stroke-dasharray="4 4" stroke-width="1.5" x1="320" x2="320" y1="132" y2="220"></line>
+<text fill="#9a9ab0" font-family="SFMono-Regular, Consolas, monospace" font-size="11" x="332" y="185">false</text>
+<text fill="#9a9ab0" font-family="SFMono-Regular, Consolas, monospace" font-size="11" x="332" y="200">no action taken</text>
+<!-- Node 1: Shopify trigger -->
+<rect fill="#12121a" height="92" rx="12" stroke="#232330" width="180" x="20" y="40"></rect>
+<rect fill="rgba(99,102,241,0.25)" height="18" rx="5" width="58" x="36" y="56"></rect>
+<text fill="#818cf8" font-family="-apple-system, sans-serif" font-size="10" font-weight="700" letter-spacing="0.5" text-anchor="middle" x="65" y="69">TRIGGER</text>
+<text fill="#f4f4f6" font-family="-apple-system, sans-serif" font-size="14" font-weight="600" x="36" y="98">Shopify</text>
+<text fill="#9a9ab0" font-family="-apple-system, sans-serif" font-size="12" x="36" y="116">Product Updated</text>
+<!-- Node 2: Condition -->
+<rect fill="#12121a" height="92" rx="12" stroke="#232330" width="180" x="260" y="40"></rect>
+<rect fill="rgba(52,211,153,0.12)" height="18" rx="5" width="42" x="276" y="56"></rect>
+<text fill="#34d399" font-family="-apple-system, sans-serif" font-size="10" font-weight="700" letter-spacing="0.5" text-anchor="middle" x="297" y="69">STEP</text>
+<text fill="#f4f4f6" font-family="-apple-system, sans-serif" font-size="14" font-weight="600" x="276" y="98">Condition</text>
+<text fill="#9a9ab0" font-family="SFMono-Regular, Consolas, monospace" font-size="12" x="276" y="116">price &gt; 50</text>
+<!-- Node 3: Gemini -->
+<rect fill="#12121a" height="92" rx="12" stroke="#232330" width="180" x="500" y="40"></rect>
+<rect fill="rgba(52,211,153,0.12)" height="18" rx="5" width="42" x="516" y="56"></rect>
+<text fill="#34d399" font-family="-apple-system, sans-serif" font-size="10" font-weight="700" letter-spacing="0.5" text-anchor="middle" x="537" y="69">STEP</text>
+<text fill="#f4f4f6" font-family="-apple-system, sans-serif" font-size="14" font-weight="600" x="516" y="98">Gemini</text>
+<text fill="#9a9ab0" font-family="-apple-system, sans-serif" font-size="12" x="516" y="116">Write a summary</text>
+<!-- Node 4: HTTP Request -->
+<rect fill="#12121a" height="92" rx="12" stroke="#232330" width="220" x="740" y="40"></rect>
+<rect fill="rgba(52,211,153,0.12)" height="18" rx="5" width="42" x="756" y="56"></rect>
+<text fill="#34d399" font-family="-apple-system, sans-serif" font-size="10" font-weight="700" letter-spacing="0.5" text-anchor="middle" x="777" y="69">STEP</text>
+<text fill="#f4f4f6" font-family="-apple-system, sans-serif" font-size="14" font-weight="600" x="756" y="98">HTTP Request</text>
+<text fill="#9a9ab0" font-family="-apple-system, sans-serif" font-size="12" x="756" y="116">Notify the team</text>
+</svg>
+</div>
+<p class="diagram-caption">
+      The condition's branch reads <code>gt(trigger.payload.price, 50)</code> — see the
+      <a href="docs/expressions/" style="color:var(--accent-hover); text-decoration:none;">Expressions guide</a> for the full syntax.
+    </p>
+</section>
+<section class="blocks">
+<div class="section-label">Building blocks</div>
+<h2>Everything you need, out of the box.</h2>
+<p class="lede">4 triggers and 7 steps ship with every workflow — no extra integrations to install.</p>
+<div class="blocks-subhead">
+<h3>Triggers</h3>
+</div>
+<div class="block-grid">
+<a class="block-card" href="docs/triggers/manual/">
+<span class="block-type trigger">Trigger</span>
+<h4>Manual</h4>
+<p>Run a workflow on demand from the editor.</p>
+</a>
+<a class="block-card" href="docs/triggers/webhook/">
+<span class="block-type trigger">Trigger</span>
+<h4>Webhook</h4>
+<p>Start a run from any HTTP request.</p>
+</a>
+<a class="block-card" href="docs/triggers/cron/">
+<span class="block-type trigger">Trigger</span>
+<h4>Scheduled</h4>
+<p>Run on a recurring cron schedule.</p>
+</a>
+<a class="block-card" href="docs/triggers/shopify/">
+<span class="block-type trigger">Trigger</span>
+<h4>Shopify</h4>
+<p>React to product and inventory events.</p>
+</a>
+</div>
+<div class="blocks-subhead">
+<h3>Steps</h3>
+<a href="docs/">See full reference →</a>
+</div>
+<div class="block-grid steps">
+<a class="block-card" href="docs/steps/debug/">
+<span class="block-type step">Step</span>
+<h4>Debug</h4>
+<p>Inspect state and variables in the run log.</p>
+</a>
+<a class="block-card" href="docs/steps/http-request/">
+<span class="block-type step">Step</span>
+<h4>HTTP Request</h4>
+<p>Call any external API.</p>
+</a>
+<a class="block-card" href="docs/steps/lua-script/">
+<span class="block-type step">Step</span>
+<h4>Lua script</h4>
+<p>Custom logic the canvas can't express.</p>
+</a>
+<a class="block-card" href="docs/steps/condition/">
+<span class="block-type step">Step</span>
+<h4>Condition</h4>
+<p>Branch true/false on an expression.</p>
+</a>
+<a class="block-card" href="docs/steps/loop/">
+<span class="block-type step">Step</span>
+<h4>Loop</h4>
+<p>Repeat a branch over a list.</p>
+</a>
+<a class="block-card" href="docs/steps/shopify-graphql/">
+<span class="block-type step">Step</span>
+<h4>Shopify GraphQL</h4>
+<p>Read or write directly via the Admin API.</p>
+</a>
+<a class="block-card" href="docs/steps/gemini/">
+<span class="block-type step">Step</span>
+<h4>Gemini</h4>
+<p>Generate text with Google Gemini, inline.</p>
+</a>
+<a class="block-card see-all-card" href="docs/">
+        See all triggers &amp; steps →
+      </a>
+</div>
+</section>
+<section class="expressions">
+<div class="section-label">Under the hood</div>
+<h2>A real expression language, when you need it.</h2>
+<div class="expr-grid">
+<div>
+<ul class="expr-features">
+<li>Reference <code>trigger</code>, <code>steps.*</code>, <code>tenant</code>, <code>env</code>, and <code>loop</code> data directly in any expression-aware field.</li>
+<li>Built-in functions for <code>date.*</code>, <code>str.*</code>, <code>math.*</code>, and boolean logic like <code>eq</code>, <code>gt</code>, <code>and</code>.</li>
+<li><code>jsonpath(...)</code> for reaching into nested objects and arrays.</li>
+<li>Secrets and workspace variables via <code>secrets.KEY</code> and <code>vars.KEY</code> — never logged when they shouldn't be.</li>
+<li>A Monaco-based editor with syntax highlighting and autocomplete for every function, step, and field.</li>
+</ul>
+<a class="expr-cta" href="docs/expressions/">Read the Expressions guide →</a>
+</div>
+<div class="code-panel">
+<div class="code-titlebar"><span></span><span></span><span></span></div>
+<pre><span class="tok-fn">and</span>(
+  <span class="tok-fn">eq</span>(trigger.title, <span class="tok-str">"Product Updated"</span>),
+  <span class="tok-fn">gt</span>(
+    <span class="tok-fn">jsonpath</span>(<span class="tok-step">steps</span>.http_call_a, <span class="tok-str">"$.response.status"</span>),
+    <span class="tok-num">199</span>
+  )
+)</pre>
+</div>
+</div>
+</section>
+<footer>
+<span class="copyright">© 2026 Flixir</span>
+<a href="docs/">Docs</a>
+<a href="https://www.youtube.com/@Flixirio" rel="noopener" target="_blank">YouTube</a>
+</footer>
+</div>
+
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.tabs", "navigation.sections", "navigation.indexes", "navigation.top", "toc.follow", "search.suggest", "search.highlight", "content.code.copy", "content.action.edit"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
