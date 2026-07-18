@@ -32,6 +32,7 @@ Steps are chained after a trigger to process data, call external services, branc
 - **[Lua script](steps/lua-script.md)** — Executes a custom Lua script with access to workflow variables, for logic no built-in step covers.
 - **[Condition](steps/condition.md)** — Evaluates a boolean expression and branches the workflow down a true or false path.
 - **[Loop](steps/loop.md)** — Iterates over a list, running the downstream branch once per item.
+- **[Sleep](steps/sleep.md)** — Pauses the workflow for a set amount of time before continuing.
 - **[Shopify GraphQL](steps/shopify-graphql.md)** — Executes any Shopify Admin GraphQL query or mutation directly against the connected store.
 - **[Gemini](steps/gemini.md)** — Generates text with Google Gemini — summarize, classify, or draft content mid-automation.
 - **[Storage: Write](steps/storage-write.md)** — Inserts a new item into a Storage.
