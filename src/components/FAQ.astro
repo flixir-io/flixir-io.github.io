@@ -1,0 +1,74 @@
+---
+interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  items?: FaqItem[];
+}
+
+const defaultItems: FaqItem[] = [
+  {
+    question: 'What is Flixir?',
+    answer:
+      'Flixir is a visual workflow builder for Shopify. You connect a trigger (an order, a customer, a stock change) to a chain of steps on a canvas, and the engine runs it whenever the trigger fires — no app code to deploy.',
+  },
+  {
+    question: 'Do I need to know how to code?',
+    answer:
+      'No. Building a workflow is drag-and-drop: place steps on the canvas and wire them together. Advanced steps let you reference data from earlier steps with a simple expression syntax, but that\u2019s optional, not required.',
+  },
+  {
+    question: 'Which Shopify events can trigger a workflow?',
+    answer:
+      'Order, customer, and inventory events are supported today, backed by Shopify\u2019s native webhooks and GraphQL Admin API. See the docs for the full, current list of triggers and actions.',
+  },
+  {
+    question: 'Is my store data secure?',
+    answer:
+      'Workflows run against your Shopify store using Shopify\u2019s own authenticated APIs. We don\u2019t sell or share store data, and each workflow only accesses the scopes it needs.',
+  },
+  {
+    question: 'When can I start using it?',
+    answer:
+      'Flixir is in active development. Follow the GitHub repository for progress, and check the docs for what\u2019s already built.',
+  },
+];
+
+const { items = defaultItems } = Astro.props;
+---
+
+<section class="border-t border-slate-200 py-20 dark:border-slate-800">
+  <div class="mx-auto max-w-3xl px-6">
+    <h2 class="text-center text-3xl font-semibold tracking-tight text-slate-900 dark:text-white">
+      Frequently asked questions
+    </h2>
+    <div class="mt-10 divide-y divide-slate-200 dark:divide-slate-800">
+      {items.map((item) => (
+        <details class="group py-5 [&_summary::-webkit-details-marker]:hidden">
+          <summary
+            class="flex cursor-pointer list-none items-center justify-between gap-4 text-left text-base font-medium text-slate-900 dark:text-white"
+          >
+            {item.question}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              class="h-5 w-5 shrink-0 text-slate-400 transition-transform duration-200 group-open:rotate-180"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 11.168l3.71-3.938a.75.75 0 1 1 1.08 1.04l-4.25 4.5a.75.75 0 0 1-1.08 0l-4.25-4.5a.75.75 0 0 1 .02-1.06Z"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
+          </summary>
+          <p class="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+            {item.answer}
+          </p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

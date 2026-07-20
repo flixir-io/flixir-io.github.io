@@ -1,0 +1,64 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = 'Flixir is a visual workflow automation engine built for Shopify. Automate your store without writing code.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} · Flixir</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <!-- Matches theme_color in site.webmanifest — colors the mobile
+         browser chrome (address bar / status bar) to match the brand. -->
+    <meta name="theme-color" content="#6b39d3" />
+
+    <!-- Same Inter load as the Starlight /docs pages (see astro.config.mjs
+         `head`), so the font doesn't flash/swap when navigating between
+         the marketing site and the docs. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    />
+
+    <!--
+      Runs before first paint to avoid a flash of the wrong theme. Reads the
+      same STORAGE_KEY that ThemeToggle.astro writes to; falls back to the
+      OS preference when nothing is stored yet. Kept inline (not in an
+      external script) specifically so it blocks paint instead of racing it.
+    -->
+    <script is:inline>
+      (function () {
+        const STORAGE_KEY = 'flixir-theme';
+        const stored = localStorage.getItem(STORAGE_KEY);
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = stored ?? (prefersDark ? 'dark' : 'light');
+        document.documentElement.classList.toggle('dark', theme === 'dark');
+      })();
+    </script>
+  </head>
+  <body class="flex min-h-screen flex-col">
+    <Header />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

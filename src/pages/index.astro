@@ -1,0 +1,59 @@
+---
+import MarketingLayout from '../layouts/MarketingLayout.astro';
+import FAQ from '../components/FAQ.astro';
+
+const features = [
+  {
+    title: 'Visual builder',
+    body: 'Drag steps onto a canvas and wire them together — triggers, conditions, loops, and Shopify actions, no code required.',
+  },
+  {
+    title: 'Built for Shopify',
+    body: 'Native triggers for orders, customers, and storage changes, plus first-class Shopify GraphQL steps.',
+  },
+  {
+    title: 'Runs on your data',
+    body: 'Reference any previous step\'s output with a simple expression syntax, right in the parameter you\'re editing.',
+  },
+];
+---
+
+<MarketingLayout title="Visual workflow automation for Shopify">
+  <section class="mx-auto max-w-6xl px-6 py-24 text-center">
+    <h1 class="text-4xl font-semibold tracking-tight text-slate-900 dark:text-white sm:text-5xl">
+      Automate your Shopify store
+      <span class="text-brand-600 dark:text-brand-400">without writing code</span>
+    </h1>
+    <p class="mx-auto mt-6 max-w-2xl text-lg text-slate-600 dark:text-slate-400">
+      Flixir is a visual workflow builder for Shopify merchants. Connect
+      triggers to actions on a canvas and let the engine handle the rest.
+    </p>
+    <div class="mt-10 flex items-center justify-center gap-4">
+      <a
+        href="/docs/"
+        class="rounded-full bg-brand-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-brand-700"
+      >
+        Read the docs
+      </a>
+      <a
+        href="https://github.com/flixir-io"
+        class="rounded-full border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-700 transition hover:border-brand-400 hover:text-brand-600 dark:border-slate-700 dark:text-slate-300 dark:hover:text-brand-400"
+      >
+        View on GitHub
+      </a>
+    </div>
+  </section>
+
+  <section class="border-t border-slate-200 bg-slate-50 py-20 dark:border-slate-800 dark:bg-slate-900">
+    <div class="mx-auto grid max-w-6xl gap-10 px-6 sm:grid-cols-3">
+      {features.map((feature) => (
+        <div>
+          <h2 class="text-lg font-semibold text-slate-900 dark:text-white">{feature.title}</h2>
+          <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">{feature.body}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <FAQ />
+</MarketingLayout>

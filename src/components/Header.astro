@@ -1,0 +1,44 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+
+const navLinks = [
+  { label: 'Docs', href: '/docs/' },
+  { label: 'Blog', href: '/blog/' },
+  { label: 'Recipes', href: '/recipes/' },
+];
+---
+
+<header class="sticky top-0 z-40 border-b border-slate-200 bg-white/80 backdrop-blur dark:border-slate-800 dark:bg-slate-950/80">
+  <div class="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
+    <a href="/" class="flex items-center gap-2 text-lg font-semibold tracking-tight text-slate-900 dark:text-white">
+      <svg width="24" height="24" viewBox="0 0 128 128" aria-hidden="true" class="shrink-0">
+        <rect width="128" height="128" rx="28" class="fill-brand-600 dark:fill-brand-500" />
+        <rect x="46" y="38" width="12" height="52" rx="6" fill="#ffffff" />
+        <path d="M70 40 L96 64 L70 88" fill="none" stroke="#ffffff" stroke-width="12"
+              stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+      Flixir
+    </a>
+
+    <nav class="hidden items-center gap-8 md:flex">
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          class="text-sm font-medium text-slate-600 transition hover:text-brand-600 dark:text-slate-300 dark:hover:text-brand-400"
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <ThemeToggle />
+      <a
+        href="/docs/"
+        class="hidden rounded-full bg-brand-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-700 sm:inline-flex"
+      >
+        Get started
+      </a>
+    </div>
+  </div>
+</header>

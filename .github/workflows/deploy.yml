@@ -14,10 +14,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-node@v4
         with:
-          python-version: "3.x"
+          node-version: "22.12.0"
 
-      - run: pip install -r requirements.txt
+      # Uses `npm install` rather than `npm ci` because docs-site has no
+      # committed package-lock.json yet. Switch to `npm ci` (and add
+      # `cache: "npm"` above) once one is committed — see repo README /
+      # ask in #flixir-dev if this comment is stale and it's already there.
+      - cache: "npm"
+      - run: npm ci
 
-      - run: mkdocs gh-deploy --force
+      - run: npm run build
+
+      - uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
