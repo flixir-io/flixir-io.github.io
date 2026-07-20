@@ -17,12 +17,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "22.12.0"
+          cache: "npm"
 
-      # Uses `npm install` rather than `npm ci` because docs-site has no
-      # committed package-lock.json yet. Switch to `npm ci` (and add
-      # `cache: "npm"` above) once one is committed — see repo README /
-      # ask in #flixir-dev if this comment is stale and it's already there.
-      - cache: "npm"
       - run: npm ci
 
       - run: npm run build
